@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iCaro Drops</title>
+  
+  <!-- === BOOSTRAP 5 === -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- === FONT AWESOME === -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- === ESTILOS === -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+ <!-- === Navbar === -->
+ <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- Logo o marca -->
+    <a class="navbar-brand" href="#">ICARODROPS</a>
+
+    <!-- Botón hamburguesa -->
+    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Contenido colapsable -->
+    <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+      <!-- DESKTOP: botón y redes -->
+      <div class="d-none d-lg-flex align-items-center gap-3 ms-auto">
+        <a href="https://wa.me/5491123456789?text=Vengo%20desde%20la%20web,%20me%20gustaria%20hacerte%20una%20consulta" 
+           target="_blank" 
+           class="btn btn-success">
+          ¡Contactanos!
+        </a>
+        <a href="https://www.instagram.com/icarodrops/?igsh=MTZoeXY3ZjlrcTIxMw%3D%3D#" class="footer-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5491123456789?text=Vengo%20desde%20la%20web,%20me%20gustaria%20hacerte%20una%20consulta" class="footer-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+
+      <!-- MOBILE: centrado -->
+      <div class="d-lg-none w-100 text-center animated-navbar">
+        <a href="https://wa.me/5491123456789?text=Hola! Quiero hacer una consulta desde la web." 
+           target="_blank" 
+           class="btn btn-success my-3 px-4">
+          ¡Contactanos por Whatsapp!
+        </a>
+        <div class="d-flex justify-content-center gap-3 mt-2">
+          <a href="https://www.instagram.com/icarodrops/?igsh=MTZoeXY3ZjlrcTIxMw%3D%3D#" class="footer-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://wa.me/5491123456789?text=Vengo%20desde%20la%20web,%20me%20gustaria%20hacerte%20una%20consulta" class="footer-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero d-flex flex-column justify-content-center align-items-center text-center">
+  <img src="assets/icaroLogo.png" alt="ICARODROPS Logo" class="hero-logo">
+
+  <!-- Info Icons Section -->
+  <div class="container py-4 text-white">
+    <div class="d-flex justify-content-between flex-wrap w-100" id="icons-hero">
+
+      
+      <!-- Icono 1 -->
+      <div class="col-md-4 icon-item delay-1">
+        <div class="d-flex flex-column align-items-center text-center">
+          <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
+          <p class="mb-0">Bahía Blanca<br><small>Buenos Aires</small></p>
+        </div>
+      </div>
+
+      <!-- Icono 2 -->
+      <div class="col-md-4 icon-item delay-0">
+        <div class="d-flex flex-column align-items-center text-center">
+          <i class="fas fa-box-open fa-2x mb-2"></i>
+          <p class="mb-0">Drops Mensuales<br><small>Stock Limitado</small></p>
+        </div>
+      </div>
+      
+      <!-- Icono 3 -->
+      <div class="col-md-4 icon-item delay-2">
+        <div class="d-flex flex-column align-items-center text-center">
+          <i class="fas fa-truck fa-2x mb-2"></i>
+          <p class="mb-0">Envíos Locales<br><small>Por el momento</small></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- === CAROUSEL DIVISOR CON IMAGENES === -->
+<section class="cap-carousel">
+  <div class="carousel-track" id="carousel-track">
+    <img src="assets/cap1.jpeg" alt="Gorra 1">
+    <img src="assets/cap2.jpeg" alt="Gorra 2">
+    <img src="assets/cap3.jpeg" alt="Gorra 3">
+    <img src="assets/cap4.jpeg" alt="Gorra 4">
+    <img src="assets/cap5.jpeg" alt="Gorra 5">
+    <img src="assets/cap6.jpeg" alt="Gorra 6">
+    <img src="assets/cap7.jpeg" alt="Gorra 7">
+    <img src="assets/cap8.jpeg" alt="Gorra 8">
+  </div>
+</section>
+
+<!-- === PRODUCTO EXCLUSIVE === -->
+<section class="producto-destacado position-relative">
+  <!-- Flecha decorativa izquierda -->
+  <div class="decoracion decoracion-up d-none d-md-block fade-up">
+    <img src="assets/capFlechasUp.png" alt="Decoración izquierda">
+  </div>
+
+  <!-- Flecha decorativa derecha -->
+  <div class="decoracion decoracion-down d-none d-md-block fade-up">
+    <img src="assets/capFlechasDown.png" alt="Decoración derecha">
+  </div>
+
+  <!-- Decoración X inferior izquierda -->
+  <div class="decoracion decoracion-x d-none d-md-block fade-up">
+    <img src="assets/decoracionX.png" alt="Decoración X">
+  </div>
+
+  <div class="container h-100 position-relative">
+    <div class="row h-100 flex-column flex-md-row">
+      
+      <!-- Texto -->
+      <div class="col-md-6 text-white text-center text-md-start z-1 fade-up">
+        <h2 class="titulo-producto">NEW ERA 59FIFTY</h2>
+        <h5 class="subtitulo-producto">NEW YORK YANKEES NAVY</h5>
+        <p class="descripcion-producto">
+          Gorras yankees original con estilo urbano,<br>
+          cerrada. CONSULTÁ YA POR STOCK!
+        </p>
+      </div>
+
+      <!-- Imagen -->
+      <div class="col-md-6 text-center z-1 fade-up">
+        <img src="assets/capProdExc.png" alt="Gorra Destacada" class="img-producto">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- === PRODUCTOS ==== -->
+<section class="productos-destacados py-5">
+  <div class="container text-center">
+    <h3 class="titulo-seccion mb-4">PRODUCTOS TOP <br> SEMANALES</h3>
+
+    <div class="row g-4" id="productos-grid">
+      <!-- Producto visible -->
+      <div class="row g-4">
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap1.jpeg" data-nombre="NEW ERA 59FIFTY" data-descripcion="Snapback negra clásica, visera plana con logo bordado." data-talles="S/M, M, L">
+            <img src="assets/cap1.jpeg" alt="59FIFTY Black">
+            <div class="info-producto">
+              <p class="precio">$10.999</p>
+              <p class="nombre">NEW ERA 59FIFTY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Snapback negra clásica, visera plana. Talles: S/M, M, L">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap2.jpeg" data-nombre="NEW ERA 9FORTY" data-descripcion="Estilo Dodgers con visera curva y ajuste metálico." data-talles="Adjustable">
+            <img src="assets/cap2.jpeg" alt="9FORTY Dodgers">
+            <div class="info-producto">
+              <p class="precio">$9.499</p>
+              <p class="nombre">NEW ERA 9FORTY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Visera curva, ajuste metálico. Talle único ajustable.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap3.jpeg" data-nombre="MITCHELL & NESS" data-descripcion="Snapback retro con logo bordado al frente." data-talles="One Size">
+            <img src="assets/cap3.jpeg" alt="Mitchell & Ness">
+            <div class="info-producto">
+              <p class="precio">$12.999</p>
+              <p class="nombre">MITCHELL & NESS</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Snapback retro. Talle único. Logo bordado.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap4.jpeg" data-nombre="’47 CLEAN UP" data-descripcion="Tela lavada estilo vintage, visera curva suave." data-talles="Adjustable">
+            <img src="assets/cap4.jpeg" alt="47 Clean Up">
+            <div class="info-producto">
+              <p class="precio">$8.499</p>
+              <p class="nombre">’47 CLEAN UP</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Estilo vintage. Talle ajustable.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap5.jpeg" data-nombre="FLEXFIT WOOLY" data-descripcion="Visera curva, sin ajuste. Tejido elástico cómodo." data-talles="M, L, XL">
+            <img src="assets/cap5.jpeg" alt="Flexfit Wooly">
+            <div class="info-producto">
+              <p class="precio">$10.299</p>
+              <p class="nombre">FLEXFIT WOOLY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Elástica sin ajuste. Visera curva.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap6.jpeg" data-nombre="ICARO DROP RED" data-descripcion="Drop exclusivo con visera plana y logo frontal." data-talles="S, M, L">
+            <img src="assets/cap6.jpeg" alt="ICARO Drop Red">
+            <div class="info-producto">
+              <p class="precio">$13.999</p>
+              <p class="nombre">ICARO DROP RED</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Visera plana. Edición limitada. Talles S, M, L">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap7.jpeg" data-nombre="NIKE CLUB CAP" data-descripcion="Diseño liviano con swoosh bordado al lateral." data-talles="Adjustable">
+            <img src="assets/cap7.jpeg" alt="Nike Club Cap">
+            <div class="info-producto">
+              <p class="precio">$11.899</p>
+              <p class="nombre">NIKE CLUB CAP</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Liviana y cómoda. Ajustable. Logo Nike.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap8.jpeg" data-nombre="CITY PACK 9FIFTY" data-descripcion="Edición limitada con detalles urbanos bordados." data-talles="S/M, M/L">
+            <img src="assets/cap8.jpeg" alt="City Pack 9FIFTY">
+            <div class="info-producto">
+              <p class="precio">$14.299</p>
+              <p class="nombre">CITY PACK 9FIFTY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Detalles urbanos bordados. Edición limitada.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap1.jpeg" data-nombre="NEW ERA 59FIFTY" data-descripcion="Snapback negra clásica, visera plana con logo bordado." data-talles="S/M, M, L">
+            <img src="assets/cap1.jpeg" alt="59FIFTY Black">
+            <div class="info-producto">
+              <p class="precio">$10.999</p>
+              <p class="nombre">NEW ERA 59FIFTY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Snapback negra clásica, visera plana. Talles: S/M, M, L">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap2.jpeg" data-nombre="NEW ERA 9FORTY" data-descripcion="Estilo Dodgers con visera curva y ajuste metálico." data-talles="Adjustable">
+            <img src="assets/cap2.jpeg" alt="9FORTY Dodgers">
+            <div class="info-producto">
+              <p class="precio">$9.499</p>
+              <p class="nombre">NEW ERA 9FORTY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Visera curva, ajuste metálico. Talle único ajustable.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap3.jpeg" data-nombre="MITCHELL & NESS" data-descripcion="Snapback retro con logo bordado al frente." data-talles="One Size">
+            <img src="assets/cap3.jpeg" alt="Mitchell & Ness">
+            <div class="info-producto">
+              <p class="precio">$12.999</p>
+              <p class="nombre">MITCHELL & NESS</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Snapback retro. Talle único. Logo bordado.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap4.jpeg" data-nombre="’47 CLEAN UP" data-descripcion="Tela lavada estilo vintage, visera curva suave." data-talles="Adjustable">
+            <img src="assets/cap4.jpeg" alt="47 Clean Up">
+            <div class="info-producto">
+              <p class="precio">$8.499</p>
+              <p class="nombre">’47 CLEAN UP</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Estilo vintage. Talle ajustable.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap5.jpeg" data-nombre="FLEXFIT WOOLY" data-descripcion="Visera curva, sin ajuste. Tejido elástico cómodo." data-talles="M, L, XL">
+            <img src="assets/cap5.jpeg" alt="Flexfit Wooly">
+            <div class="info-producto">
+              <p class="precio">$10.299</p>
+              <p class="nombre">FLEXFIT WOOLY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Elástica sin ajuste. Visera curva.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap6.jpeg" data-nombre="ICARO DROP RED" data-descripcion="Drop exclusivo con visera plana y logo frontal." data-talles="S, M, L">
+            <img src="assets/cap6.jpeg" alt="ICARO Drop Red">
+            <div class="info-producto">
+              <p class="precio">$13.999</p>
+              <p class="nombre">ICARO DROP RED</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Visera plana. Edición limitada. Talles S, M, L">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap7.jpeg" data-nombre="NIKE CLUB CAP" data-descripcion="Diseño liviano con swoosh bordado al lateral." data-talles="Adjustable">
+            <img src="assets/cap7.jpeg" alt="Nike Club Cap">
+            <div class="info-producto">
+              <p class="precio">$11.899</p>
+              <p class="nombre">NIKE CLUB CAP</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Liviana y cómoda. Ajustable. Logo Nike.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col-6 col-md-4 col-lg-3 producto-card">
+          <div class="card-producto" data-imagen="assets/cap8.jpeg" data-nombre="CITY PACK 9FIFTY" data-descripcion="Edición limitada con detalles urbanos bordados." data-talles="S/M, M/L">
+            <img src="assets/cap8.jpeg" alt="City Pack 9FIFTY">
+            <div class="info-producto">
+              <p class="precio">$14.299</p>
+              <p class="nombre">CITY PACK 9FIFTY</p>
+              <div class="acciones">
+                <span class="icono info-tooltip" data-tooltip="Detalles urbanos bordados. Edición limitada.">
+                  <i class="fas fa-info-circle"></i>
+                </span>
+                <span class="icono"><i class="fas fa-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- === PRODUCTOS AGOTADOS === -->
+      <div class="col-6 col-md-4 col-lg-3 producto-card" id="soldOut">
+        <div class="card-producto agotado"
+             data-imagen="assets/cap3.jpeg"
+             data-nombre="MITCHELL & NESS"
+             data-descripcion="Snapback retro con logo bordado al frente."
+             data-talles="One Size">
+          <img src="assets/cap3.jpeg" alt="Mitchell & Ness">
+          <div class="info-producto">
+            <p class="precio">$12.999</p>
+            <p class="nombre">MITCHELL & NESS</p>
+            <div class="acciones">
+              <span class="icono info-tooltip" data-tooltip="Snapback retro. Talle único. Logo bordado.">
+                <i class="fas fa-info-circle"></i>
+              </span>
+              <span class="icono"><i class="fas fa-arrow-right"></i></span>
+            </div>
+          </div>
+          <div class="sold-out-label">Sold Out</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botones -->
+    <div class="flecha-scroll mt-4" id="ver-mas">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="flecha-scroll mt-4 d-none" id="ver-menos">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+  </div>
+</section>
+
+<!-- Modal Detalle Producto -->
+<div id="modalProducto" class="modal-producto">
+  <div class="modal-contenido container">
+    <span class="modal-cerrar" onclick="cerrarModal()">&times;</span>
+    <div class="row g-4 align-items-center">
+      <div class="col-md-6 text-center">
+        <img id="modalImagen" src="" alt="Imagen producto" class="img-fluid" />
+      </div>
+      <div class="col-md-6 text-white text-start">
+        <h4 id="modalTitulo"></h4>
+        <p id="modalDescripcion" class="mb-2"></p>
+        <p id="modalTalles" class="text-muted mb-3"></p>
+        <a id="modalWhatsapp" target="_blank" class="btn btn-success">Consultar por stock!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer py-4 bg-black text-white">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+
+      <!-- Izquierda: Copyright -->
+      <div class="col-md-4 text-start" id="copy-footer">
+        <small>&copy; 2024 iCaroDrops</small>
+      </div>
+
+      <!-- Centro: Logo -->
+      <div class="col-md-4 text-center">
+        <img src="assets/icaroLogo.png" alt="iCaroDrops Logo" class="footer-logo">
+      </div>
+
+      <!-- Derecha: Redes sociales -->
+      <div class="col-md-4 text-end">
+        <a href="https://www.instagram.com/icarodrops/?igsh=MTZoeXY3ZjlrcTIxMw%3D%3D#" class="footer-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5491123456789?text=Vengo%20desde%20la%20web,%20me%20gustaria%20hacerte%20una%20consulta" class="footer-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <div class="mt-2">
+          <small class="text-muted">Website designed by Braian Esmoli</small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+  <!-- === BOOSTRAP JS / JS PROPIO === -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

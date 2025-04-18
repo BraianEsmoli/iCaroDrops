@@ -1,0 +1,44 @@
+.hero {
+    background-image: url('../assets/fondoHero.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-logo {
+    max-width: 90%;
+    width: 400px;
+    margin-top: 4rem;
+  }
+  
+  #icons-hero {
+    font-family: 'bebasNeue', sans-serif;
+    letter-spacing: 2px;
+    padding: 0 2em;
+  }
+  
+  .icon-item {
+    flex: 1 1 33%;
+    max-width: 33%;
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  
+  .icon-item p {
+    font-size: 0.95rem;
+  }
+  
+  .icon-item small {
+    font-size: 0.75rem;
+    opacity: 0.8;
+  }
+  
+  .delay-0 { animation-delay: 0s; }
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }

@@ -1,0 +1,13 @@
+{
+  "name": "icarodrops",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "sass": "sass scss/estilos.scss css/estilos.css",
+    "sass:watch": "sass --watch scss/estilos.scss css/estilos.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

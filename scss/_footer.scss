@@ -1,0 +1,21 @@
+.footer-logo {
+    height: 200px;
+    filter: drop-shadow(0 0 2px rgba(255,255,255,0.2));
+  }
+  
+  .footer-icon {
+    color: #fff;
+    margin-right: 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+    font-size: 1.2rem;
+  }
+  
+  .footer-icon:hover {
+    color: #00ffcc;
+    transform: scale(1.2);
+  }
+
+  #copy-footer {
+    font-family: 'bebasNeue', sans-serif;
+    font-size: 18px;
+  }
