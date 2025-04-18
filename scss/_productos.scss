@@ -15,7 +15,7 @@
   .card-producto.agotado {
     background-color: #2a2827;
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible !important;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
@@ -25,6 +25,7 @@
     position: relative;
     margin: 0 auto;
     max-width: 100%;
+    z-index: 1;
   }
 
   .card-producto:hover {
@@ -165,5 +166,48 @@
   
   .flecha-scroll:hover {
     transform: translateY(-3px);
+    opacity: 1;
+  }
+  /* === TOOLTIP DESKTOP === */
+.info-tooltip {
+    position: relative;
+    z-index: 100;
+  }
+  
+  .info-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #111;
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .info-tooltip::before {
+    content: "";
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom: none;
+    border-top: 5px solid #111;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 9998;
+  }
+  
+  .info-tooltip:hover::after,
+  .info-tooltip:hover::before {
     opacity: 1;
   }

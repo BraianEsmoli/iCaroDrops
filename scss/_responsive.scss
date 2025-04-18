@@ -113,8 +113,18 @@
     font-size: 0.85rem;
   }
 
-  .acciones .icono {
-    font-size: 0.8rem;
+  .acciones {
+    justify-content: flex-end;
+    gap: 0.8rem;
+  }
+
+  .acciones .icono:first-child {
+    order: 1; /* ícono de info */
+  }
+
+  .acciones .icono:last-child {
+    order: 2; /* flecha */
+    margin-left: auto;
   }
 
   .sold-out-label {
@@ -165,6 +175,9 @@
     padding-right: 0.5em !important;
   }
 
+  .info-tooltip {
+    display: none !important;
+  }
   /* === FOOTER === */
   .footer-content {
     text-align: center;
