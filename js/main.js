@@ -51,12 +51,18 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* SEC PRODUCTOS */
 // main.js
 import { obtenerProductosDesdeNotion } from './notion.js';
 
+// Mostrar spinner de carga
+const grid = document.getElementById('productos-grid');
+const spinner = document.createElement('div');
+spinner.className = 'spinner-productos';
+spinner.innerHTML = `<div class="spinner"></div>`;
+grid.appendChild(spinner);
+
 // Función para crear una card de producto
-  function crearCard(producto) {
+function crearCard(producto) {
   const card = document.createElement('div');
   card.className = 'col-6 col-md-4 col-lg-3 producto-card';
 
@@ -94,12 +100,15 @@ import { obtenerProductosDesdeNotion } from './notion.js';
 }
 
 // Renderizar productos desde Notion
-const grid = document.getElementById('productos-grid');
 obtenerProductosDesdeNotion()
   .then(productos => {
+    grid.innerHTML = ''; // Limpiar spinner
     productos.forEach(p => grid.appendChild(crearCard(p)));
   })
-  .catch(err => console.error('Error al obtener productos:', err));
+  .catch(err => {
+    grid.innerHTML = '<p class="text-danger">Error al cargar los productos.</p>';
+    console.error('Error al obtener productos:', err);
+  });
 
 // Modal
 function abrirModal(producto) {
@@ -114,8 +123,6 @@ function abrirModal(producto) {
 function cerrarModal() {
   document.getElementById('modalProducto').style.display = 'none';
 }
-
-
 
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */

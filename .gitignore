@@ -1,0 +1,10 @@
+# Ignorar el backend (API Notion en Vercel)
+icarodrops-backend/
+
+# Ignorar dependencias y config del sistema
+node_modules/
+.env
+.vscode/
+.DS_Store
+.idea/
+*.log
