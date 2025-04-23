@@ -3,41 +3,49 @@
     background-color: transparent;
     padding: 1rem 2rem;
   }
-  
+
   .navbar-brand {
     font-weight: bold;
     color: #fff;
     font-size: 1.5rem;
-    transition: color 0.3s;
+    transition: opacity 0.4s ease, color 0.3s;
   }
   
   .navbar-brand:hover {
     color: #00ffcc;
   }
   
-  .navbar-toggler {
-    border: none;
-    font-size: 1.5rem;
-    color: white;
-  }
-  
-  .social-icons a,
-  .footer-icon {
-    color: white;
-    margin-left: 1rem;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-  }
-  
-  .social-icons a:hover,
-  .footer-icon:hover {
-    color: #00ffcc;
-  }
-  
-  .navbar-hidden {
-    transform: translateY(-100%);
-    transition: transform 0.4s ease-in-out;
-  }
+/* === BOTÓN HAMBURGUESA === */
+.navbar-toggler {
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  margin-left: auto;
+}
+
+/* === ICONOS === */
+.footer-icon {
+  color: white;
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.footer-icon:hover {
+  color: #00ffcc;
+}
+
+/* === ANIMACIÓN INTERNA MOBILE === */
+.navbar-collapse .d-lg-none {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.navbar-collapse.show .d-lg-none {
+  opacity: 1;
+  transform: translateY(0);
+}
   
   #mainNavbar {
     transition: transform 0.4s ease-in-out;
@@ -52,8 +60,32 @@
     transition: all 0.3s ease;
   }
   
-  /* Cuando el menú se abre correctamente */
   .navbar-collapse.show .d-lg-none {
     opacity: 1;
     transform: translateY(0);
   }
+
+/* Ocultar solo logo (mobile) */
+.hide-logo {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  /* Botón hamburguesa alineado a la derecha */
+  .navbar-toggler {
+    margin-left: auto;
+  }
+
+  .navbar-custom {
+    background-color: transparent;
+    padding: 1rem 2rem;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .show-logo {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+  }
+  

@@ -202,3 +202,24 @@
     text-align: center !important;
   }
 }
+
+@media (min-width: 992px) {
+    .navbar-hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .hide-logo {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+  
+    .show-logo {
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
+  }
+  
