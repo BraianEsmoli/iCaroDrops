@@ -53,6 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // === PRODUCTOS ===
 
+// main.js
+
 // Mostrar spinner de carga
 const grid = document.getElementById('productos-grid');
 const spinner = document.createElement('div');
@@ -74,7 +76,7 @@ function crearCard(producto) {
          data-descripcion="${producto.descripcion}"
          data-talles="${producto.talles}">
 
-      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <img src="${producto.imagen || 'assets/placeholder.png'}" alt="${producto.nombre}">
 
       <div class="info-producto">
         <p class="precio">${producto.precio}</p>
@@ -102,8 +104,15 @@ function crearCard(producto) {
 fetch('https://icarodrops-backend.vercel.app/api/productos')
   .then(response => response.json())
   .then(productos => {
+    const productosConImagenes = productos.map(producto => {
+      return {
+        ...producto,
+        imagen: producto.imagen || 'assets/placeholder.png'
+      };
+    });
+
     grid.innerHTML = ''; // Limpiar spinner
-    productos.forEach(p => grid.appendChild(crearCard(p)));
+    productosConImagenes.forEach(p => grid.appendChild(crearCard(p)));
   })
   .catch(err => {
     grid.innerHTML = '<p class="text-danger">Error al cargar los productos.</p>';
@@ -112,7 +121,7 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
 
 // Modal
 function abrirModal(producto) {
-  document.getElementById('modalImagen').src = producto.imagen;
+  document.getElementById('modalImagen').src = producto.imagen || 'assets/placeholder.png';
   document.getElementById('modalTitulo').textContent = producto.nombre;
   document.getElementById('modalDescripcion').textContent = producto.descripcion;
   document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
@@ -124,6 +133,7 @@ function cerrarModal() {
   document.getElementById('modalProducto').style.display = 'none';
 }
 
+document.querySelector('.modal-cerrar')?.addEventListener('click', cerrarModal)
 
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
