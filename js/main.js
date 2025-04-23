@@ -51,8 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// main.js
-import { obtenerProductosDesdeNotion } from './notion.js';
+// === PRODUCTOS ===
 
 // Mostrar spinner de carga
 const grid = document.getElementById('productos-grid');
@@ -99,15 +98,16 @@ function crearCard(producto) {
   return card;
 }
 
-// Renderizar productos desde Notion
-obtenerProductosDesdeNotion()
+// Renderizar productos desde backend (Vercel)
+fetch('https://icarodrops-backend.vercel.app/api/productos')
+  .then(response => response.json())
   .then(productos => {
     grid.innerHTML = ''; // Limpiar spinner
     productos.forEach(p => grid.appendChild(crearCard(p)));
   })
   .catch(err => {
     grid.innerHTML = '<p class="text-danger">Error al cargar los productos.</p>';
-    console.error('Error al obtener productos:', err);
+    console.error('Error al obtener productos desde backend:', err);
   });
 
 // Modal
@@ -123,6 +123,7 @@ function abrirModal(producto) {
 function cerrarModal() {
   document.getElementById('modalProducto').style.display = 'none';
 }
+
 
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
