@@ -156,6 +156,7 @@ function abrirModal(producto) {
     imagenes.forEach(src => {
       const img = document.createElement('img');
       img.src = src;
+      img.alt = producto.nombre;
       inner.appendChild(img);
     });
 
@@ -193,6 +194,7 @@ function abrirModal(producto) {
   } else {
     const img = document.createElement('img');
     img.src = imagenes[0];
+    img.alt = producto.nombre;
     img.className = 'modal-img';
     contenedorImagen.appendChild(img);
   }
@@ -223,6 +225,7 @@ document.getElementById('ver-menos')?.addEventListener('click', () => {
   productosMostrados = 8;
   renderizarProductos();
 });
+
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
 document.addEventListener('DOMContentLoaded', () => {
