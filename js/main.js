@@ -84,7 +84,7 @@ function crearCard(producto) {
       <div class="info-producto">
         <p class="precio">${producto.precio}</p>
         <p class="nombre">${producto.nombre}</p>
-        <div class="acciones">
+        <div class="acciones" style="margin-top:auto;">
           <span class="icono info-tooltip" data-tooltip="${producto.descripcion}">
             <i class="fas fa-info-circle"></i>
           </span>
@@ -117,7 +117,11 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
   .then(productos => {
     todosLosProductos = productos
       .map(p => ({ ...p, imagen: p.imagen || 'assets/placeholder.png' }))
-      .reverse(); // Nuevos primeros
+      .sort((a, b) => {
+        if (a.agotado && !b.agotado) return 1;
+        if (!a.agotado && b.agotado) return -1;
+        return -1; // Nuevos primero (orden descendente)
+      });
 
     renderizarProductos();
   })
