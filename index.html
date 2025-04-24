@@ -165,29 +165,40 @@
   </div>
 </section>
 
-<!-- MODAL -->
-<div id="modalProducto" class="modal-producto">
-  <div class="modal-contenido container">
-    <span class="modal-cerrar" id="cerrarModalBtn">&times;</span>
-    <div class="row g-4 align-items-center">
-      <div class="col-md-6 text-center">
-        <div id="modalImagen">
-          <div class="carousel-wrapper">
-            <button id="prevSlide" class="carousel-control">&#10094;</button>
-            <div class="carousel-inner" id="carouselInner"></div>
-            <button id="nextSlide" class="carousel-control">&#10095;</button>
-          </div>
-        </div> <!-- Acá se cargan las imágenes dinámicamente -->
+<!-- MODAL Bootstrap -->
+<div class="modal fade" id="modalProducto" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="modalTitulo"></h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
-      <div class="col-md-6 text-white text-start">
-        <h4 id="modalTitulo"></h4>
-        <p id="modalDescripcion" class="mb-2"></p>
-        <p id="modalTalles" class="text-muted mb-3"></p>
-        <a id="modalWhatsapp" target="_blank" class="btn btn-success">Consultar por stock!</a>
+      <div class="modal-body">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-6">
+            <div id="carouselModal" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner" id="carouselInner">
+                <!-- JS inyectará imágenes acá -->
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselModal" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselModal" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6 text-start">
+            <p id="modalDescripcion" class="mb-2"></p>
+            <p id="modalTalles" class="text-muted mb-3"></p>
+            <a id="modalWhatsapp" target="_blank" class="btn btn-success">Consultar por stock!</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <!-- FOOTER -->
