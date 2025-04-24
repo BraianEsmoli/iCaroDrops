@@ -1,24 +1,40 @@
 import { Client } from "@notionhq/client";
-import dotenv from "dotenv";
-dotenv.config();
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default async function handler(req, res) {
-  try {
-    const response = await notion.databases.query({
-      database_id: databaseId,
-    });
+  res.setHeader("Access-Control-Allow-Origin", "https://icarodrops.com");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    const productos = response.results.map(page => ({
-      nombre: page.properties.Producto?.title?.[0]?.plain_text || 'Sin nombre',
-      imagen: page.properties["Imagen producto"]?.files?.[0]?.file?.url || '',
-      descripcion: page.properties.Descripcion?.rich_text?.[0]?.plain_text || 'Sin descripción',
-      talles: page.properties.Talles?.rich_text?.[0]?.plain_text || '-',
-      precio: page.properties.Precio?.number || 0,
-      agotado: page.properties.Estado?.select?.name === 'Agotado'
-    }));
+  if (req.method === "OPTIONS") return res.status(200).end();
+
+  try {
+    const response = await notion.databases.query({ database_id: databaseId });
+
+    const productos = response.results.map(page => {
+      const nombre = page.properties?.Producto?.title?.[0]?.plain_text || 'Sin nombre';
+
+      const imagenes = page.properties?.["Imagen producto"]?.files?.map(f => 
+        f.file?.url || f.external?.url
+      ) || [];
+
+      const descripcion = page.properties?.Descripción?.rich_text?.[0]?.plain_text || 'Sin descripción';
+      const talles = page.properties?.Talles?.rich_text?.[0]?.plain_text || '-';
+      const precio = `$${page.properties?.Precio?.number ?? 0}`;
+      const agotado = page.properties?.Estado?.select?.name === 'Agotado';
+
+      return {
+        nombre,
+        imagen: imagenes[0] || '',
+        imagenes,
+        descripcion,
+        talles,
+        precio,
+        agotado
+      };
+    });
 
     res.status(200).json(productos);
   } catch (error) {

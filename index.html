@@ -168,10 +168,16 @@
 <!-- MODAL -->
 <div id="modalProducto" class="modal-producto">
   <div class="modal-contenido container">
-    <span class="modal-cerrar" onclick="cerrarModal()">&times;</span>
+    <span class="modal-cerrar" id="cerrarModalBtn">&times;</span>
     <div class="row g-4 align-items-center">
       <div class="col-md-6 text-center">
-        <img id="modalImagen" src="" alt="Imagen producto" class="img-fluid modal-img" />
+        <div id="modalImagen">
+          <div class="carousel-wrapper">
+            <button id="prevSlide" class="carousel-control">&#10094;</button>
+            <div class="carousel-inner" id="carouselInner"></div>
+            <button id="nextSlide" class="carousel-control">&#10095;</button>
+          </div>
+        </div> <!-- Acá se cargan las imágenes dinámicamente -->
       </div>
       <div class="col-md-6 text-white text-start">
         <h4 id="modalTitulo"></h4>

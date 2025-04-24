@@ -55,6 +55,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // main.js
 
+// main.js
+
 // Mostrar spinner de carga
 const grid = document.getElementById('productos-grid');
 const spinner = document.createElement('div');
@@ -74,13 +76,12 @@ function crearCard(producto) {
 
   card.innerHTML = `
     <div class="card-producto ${estaAgotado}"
-         data-imagen="${producto.imagen}"
          data-nombre="${producto.nombre}"
          data-descripcion="${producto.descripcion}"
          data-talles="${producto.talles}"
-         data-imagenes='${JSON.stringify(producto.imagenes || [producto.imagen])}'>
+         data-imagenes='${JSON.stringify(producto.imagenes)}'>
 
-      <img src="${producto.imagen || 'assets/placeholder.png'}" alt="${producto.nombre}">
+      <img src="${producto.imagenes[0] || 'https://via.placeholder.com/300x200?text=Sin+Imagen'}" alt="${producto.nombre}">
 
       <div class="info-producto d-flex flex-column justify-content-between h-100">
         <div>
@@ -121,8 +122,7 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
     todosLosProductos = productos
       .map(p => ({
         ...p,
-        imagen: (Array.isArray(p.imagenes) ? p.imagenes[0] : p.imagen) || 'assets/placeholder.png',
-        imagenes: Array.isArray(p.imagenes) ? p.imagenes : [p.imagen]
+        imagenes: Array.isArray(p.imagenes) && p.imagenes.length > 0 ? p.imagenes : ['https://via.placeholder.com/300x200?text=Sin+Imagen']
       }))
       .sort((a, b) => {
         if (a.agotado && !b.agotado) return 1;
@@ -143,28 +143,53 @@ function abrirModal(producto) {
   const contenedorImagen = document.getElementById('modalImagen');
   contenedorImagen.innerHTML = '';
 
-  const imagenes = producto.imagenes || [producto.imagen];
+  const imagenes = producto.imagenes || [];
 
   if (imagenes.length > 1) {
-    const carousel = document.createElement('div');
-    carousel.className = 'carousel-inner';
-    imagenes.forEach((img, idx) => {
-      const imgEl = document.createElement('img');
-      imgEl.src = img;
-      imgEl.className = 'modal-img' + (idx === 0 ? ' active' : '');
-      imgEl.style.display = idx === 0 ? 'block' : 'none';
-      carousel.appendChild(imgEl);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'carousel-wrapper';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'carousel-control';
+    prevBtn.innerHTML = '&#10094;';
+    prevBtn.id = 'prevSlide';
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'carousel-control';
+    nextBtn.innerHTML = '&#10095;';
+    nextBtn.id = 'nextSlide';
+
+    const inner = document.createElement('div');
+    inner.className = 'carousel-inner';
+    inner.id = 'carouselInner';
+
+    imagenes.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      inner.appendChild(img);
     });
-    contenedorImagen.appendChild(carousel);
+
+    wrapper.appendChild(prevBtn);
+    wrapper.appendChild(inner);
+    wrapper.appendChild(nextBtn);
+    contenedorImagen.appendChild(wrapper);
 
     let current = 0;
-    setInterval(() => {
-      const imgs = carousel.querySelectorAll('img');
-      imgs.forEach((img, i) => {
-        img.style.display = i === current ? 'block' : 'none';
-      });
-      current = (current + 1) % imgs.length;
-    }, 3000);
+    const updateCarousel = () => {
+      inner.style.transform = `translateX(-${current * 100}%)`;
+    };
+
+    prevBtn.onclick = () => {
+      current = (current - 1 + imagenes.length) % imagenes.length;
+      updateCarousel();
+    };
+
+    nextBtn.onclick = () => {
+      current = (current + 1) % imagenes.length;
+      updateCarousel();
+    };
+
+    updateCarousel();
   } else {
     const img = document.createElement('img');
     img.src = imagenes[0];
@@ -178,9 +203,9 @@ function abrirModal(producto) {
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
   modal.style.display = 'flex';
 
-  modal.addEventListener('click', e => {
+  modal.onclick = e => {
     if (e.target === modal) cerrarModal();
-  });
+  };
 }
 
 function cerrarModal() {
