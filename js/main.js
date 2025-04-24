@@ -62,6 +62,9 @@ spinner.className = 'spinner-productos';
 spinner.innerHTML = `<div class="spinner"></div>`;
 grid.appendChild(spinner);
 
+let productosMostrados = 8;
+let todosLosProductos = [];
+
 // Función para crear una card de producto
 function crearCard(producto) {
   const card = document.createElement('div');
@@ -100,19 +103,23 @@ function crearCard(producto) {
   return card;
 }
 
+function renderizarProductos() {
+  grid.innerHTML = '';
+  const visibles = todosLosProductos.slice(0, productosMostrados);
+  visibles.forEach(p => grid.appendChild(crearCard(p)));
+  document.getElementById('ver-mas').classList.toggle('d-none', productosMostrados >= todosLosProductos.length);
+  document.getElementById('ver-menos').classList.toggle('d-none', productosMostrados <= 8);
+}
+
 // Renderizar productos desde backend (Vercel)
 fetch('https://icarodrops-backend.vercel.app/api/productos')
   .then(response => response.json())
   .then(productos => {
-    const productosConImagenes = productos.map(producto => {
-      return {
-        ...producto,
-        imagen: producto.imagen || 'assets/placeholder.png'
-      };
-    });
+    todosLosProductos = productos
+      .map(p => ({ ...p, imagen: p.imagen || 'assets/placeholder.png' }))
+      .reverse(); // Nuevos primeros
 
-    grid.innerHTML = ''; // Limpiar spinner
-    productosConImagenes.forEach(p => grid.appendChild(crearCard(p)));
+    renderizarProductos();
   })
   .catch(err => {
     grid.innerHTML = '<p class="text-danger">Error al cargar los productos.</p>';
@@ -133,7 +140,17 @@ function cerrarModal() {
   document.getElementById('modalProducto').style.display = 'none';
 }
 
-document.querySelector('.modal-cerrar')?.addEventListener('click', cerrarModal)
+document.querySelector('.modal-cerrar')?.addEventListener('click', cerrarModal);
+
+document.getElementById('ver-mas')?.addEventListener('click', () => {
+  productosMostrados += 8;
+  renderizarProductos();
+});
+
+document.getElementById('ver-menos')?.addEventListener('click', () => {
+  productosMostrados = 8;
+  renderizarProductos();
+});
 
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
