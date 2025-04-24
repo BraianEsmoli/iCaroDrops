@@ -139,23 +139,43 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
 
 // Modal con carrusel de Bootstrap
 function abrirModal(producto) {
-  document.getElementById('modalTitulo').textContent = producto.nombre;
-  document.getElementById('modalDescripcion').textContent = producto.descripcion;
-  document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
-  document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
-
+  const titulo = document.getElementById('modalTitulo');
+  const descripcion = document.getElementById('modalDescripcion');
+  const talles = document.getElementById('modalTalles');
+  const whatsapp = document.getElementById('modalWhatsapp');
   const inner = document.getElementById('carouselInner');
+  const prevBtn = document.querySelector('.carousel-control-prev');
+  const nextBtn = document.querySelector('.carousel-control-next');
+
+  titulo.textContent = producto.nombre;
+  descripcion.textContent = producto.descripcion;
+  talles.textContent = `Talles disponibles: ${producto.talles}`;
+  whatsapp.href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por ${producto.nombre}`;
+
   inner.innerHTML = '';
 
-  producto.imagenes.forEach((src, index) => {
-    const div = document.createElement('div');
-    div.className = `carousel-item${index === 0 ? ' active' : ''}`;
-    div.innerHTML = `<img src="${src}" class="d-block w-100" alt="${producto.nombre}">`;
-    inner.appendChild(div);
-  });
+  if (producto.imagenes.length > 1) {
+    prevBtn.style.display = 'flex';
+    nextBtn.style.display = 'flex';
 
-  const modal = new bootstrap.Modal(document.getElementById('modalProducto'));
-  modal.show();
+    producto.imagenes.forEach((src, i) => {
+      const item = document.createElement('div');
+      item.className = `carousel-item${i === 0 ? ' active' : ''}`;
+      item.innerHTML = `<img src="${src}" class="d-block w-100 rounded-3" alt="${producto.nombre}">`;
+      inner.appendChild(item);
+    });
+
+  } else {
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'none';
+
+    const soloImg = document.createElement('div');
+    soloImg.className = 'carousel-item active';
+    soloImg.innerHTML = `<img src="${producto.imagenes[0]}" class="d-block w-100 rounded-3" alt="${producto.nombre}">`;
+    inner.appendChild(soloImg);
+  }
+
+  new bootstrap.Modal(document.getElementById('modalProducto')).show();
 }
 
 document.getElementById('ver-mas')?.addEventListener('click', () => {
