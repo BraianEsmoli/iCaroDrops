@@ -137,56 +137,95 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
     console.error('Error al obtener productos desde backend:', err);
   });
 
-// Modal con carrusel de Bootstrap
+// Modal
 function abrirModal(producto) {
-  const titulo = document.getElementById('modalTitulo');
-  const descripcion = document.getElementById('modalDescripcion');
-  const talles = document.getElementById('modalTalles');
-  const whatsapp = document.getElementById('modalWhatsapp');
-  const inner = document.getElementById('carouselInner');
-  const prevBtn = document.querySelector('.carousel-control-prev');
-  const nextBtn = document.querySelector('.carousel-control-next');
+  const modal = document.getElementById('modalProducto');
+  const contenedorImagen = document.getElementById('modalImagen');
+  contenedorImagen.innerHTML = '';
 
-  titulo.textContent = producto.nombre;
-  descripcion.textContent = producto.descripcion;
-  talles.textContent = `Talles disponibles: ${producto.talles}`;
-  whatsapp.href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por ${producto.nombre}`;
+  const imagenes = producto.imagenes || [];
 
-  inner.innerHTML = '';
+  if (imagenes.length > 1) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'carousel-wrapper';
 
-  if (producto.imagenes.length > 1) {
-    prevBtn.style.display = 'flex';
-    nextBtn.style.display = 'flex';
+    const inner = document.createElement('div');
+    inner.className = 'carousel-inner';
+    inner.id = 'carouselInner';
 
-    producto.imagenes.forEach((src, i) => {
-      const item = document.createElement('div');
-      item.className = `carousel-item${i === 0 ? ' active' : ''}`;
-      item.innerHTML = `<img src="${src}" class="d-block w-100 rounded-3" alt="${producto.nombre}">`;
-      inner.appendChild(item);
+    imagenes.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = producto.nombre;
+      inner.appendChild(img);
     });
 
-  } else {
-    prevBtn.style.display = 'none';
-    nextBtn.style.display = 'none';
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'carousel-control';
+    prevBtn.id = 'prevSlide';
+    prevBtn.innerHTML = '&#10094;';
 
-    const soloImg = document.createElement('div');
-    soloImg.className = 'carousel-item active';
-    soloImg.innerHTML = `<img src="${producto.imagenes[0]}" class="d-block w-100 rounded-3" alt="${producto.nombre}">`;
-    inner.appendChild(soloImg);
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'carousel-control';
+    nextBtn.id = 'nextSlide';
+    nextBtn.innerHTML = '&#10095;';
+
+    wrapper.appendChild(prevBtn);
+    wrapper.appendChild(inner);
+    wrapper.appendChild(nextBtn);
+    contenedorImagen.appendChild(wrapper);
+
+    let current = 0;
+    const updateCarousel = () => {
+      inner.style.transform = `translateX(-${current * 100}%)`;
+    };
+
+    prevBtn.onclick = () => {
+      current = (current - 1 + imagenes.length) % imagenes.length;
+      updateCarousel();
+    };
+
+    nextBtn.onclick = () => {
+      current = (current + 1) % imagenes.length;
+      updateCarousel();
+    };
+
+    updateCarousel();
+  } else {
+    const img = document.createElement('img');
+    img.src = imagenes[0];
+    img.alt = producto.nombre;
+    img.className = 'modal-img';
+    contenedorImagen.appendChild(img);
   }
 
-  new bootstrap.Modal(document.getElementById('modalProducto')).show();
+  document.getElementById('modalTitulo').textContent = producto.nombre;
+  document.getElementById('modalDescripcion').textContent = producto.descripcion;
+  document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
+  document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
+  modal.style.display = 'flex';
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) cerrarModal();
+  });
 }
 
+function cerrarModal() {
+  const modal = document.getElementById('modalProducto');
+  modal.style.display = 'none';
+  document.getElementById('modalImagen').innerHTML = '';
+}
+
+document.querySelector('.modal-cerrar')?.addEventListener('click', cerrarModal);
 document.getElementById('ver-mas')?.addEventListener('click', () => {
   productosMostrados += 8;
   renderizarProductos();
 });
-
 document.getElementById('ver-menos')?.addEventListener('click', () => {
   productosMostrados = 8;
   renderizarProductos();
 });
+
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
 document.addEventListener('DOMContentLoaded', () => {
