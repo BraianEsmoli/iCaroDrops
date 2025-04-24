@@ -143,14 +143,12 @@
   }
 
   .modal-contenido {
-    padding: 1rem;
+    padding: 2rem;
+    max-width: 900px;
   }
 
   .modal-img {
-    max-width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
+    height: 300px;
   }
 
   #modalTitulo {

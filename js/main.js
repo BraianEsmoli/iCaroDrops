@@ -77,7 +77,8 @@ function crearCard(producto) {
          data-imagen="${producto.imagen}"
          data-nombre="${producto.nombre}"
          data-descripcion="${producto.descripcion}"
-         data-talles="${producto.talles}">
+         data-talles="${producto.talles}"
+         data-imagenes='${JSON.stringify(producto.imagenes || [producto.imagen])}'>
 
       <img src="${producto.imagen || 'assets/placeholder.png'}" alt="${producto.nombre}">
 
@@ -118,11 +119,15 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
   .then(response => response.json())
   .then(productos => {
     todosLosProductos = productos
-      .map(p => ({ ...p, imagen: p.imagen || 'assets/placeholder.png' }))
+      .map(p => ({
+        ...p,
+        imagen: (Array.isArray(p.imagenes) ? p.imagenes[0] : p.imagen) || 'assets/placeholder.png',
+        imagenes: Array.isArray(p.imagenes) ? p.imagenes : [p.imagen]
+      }))
       .sort((a, b) => {
         if (a.agotado && !b.agotado) return 1;
         if (!a.agotado && b.agotado) return -1;
-        return 0; // mantener orden de llegada (ya invertido por backend si hace falta)
+        return 0;
       });
 
     renderizarProductos();
@@ -134,30 +139,65 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
 
 // Modal
 function abrirModal(producto) {
-  document.getElementById('modalImagen').src = producto.imagen || 'assets/placeholder.png';
+  const modal = document.getElementById('modalProducto');
+  const contenedorImagen = document.getElementById('modalImagen');
+  contenedorImagen.innerHTML = '';
+
+  const imagenes = producto.imagenes || [producto.imagen];
+
+  if (imagenes.length > 1) {
+    const carousel = document.createElement('div');
+    carousel.className = 'carousel-inner';
+    imagenes.forEach((img, idx) => {
+      const imgEl = document.createElement('img');
+      imgEl.src = img;
+      imgEl.className = 'modal-img' + (idx === 0 ? ' active' : '');
+      imgEl.style.display = idx === 0 ? 'block' : 'none';
+      carousel.appendChild(imgEl);
+    });
+    contenedorImagen.appendChild(carousel);
+
+    let current = 0;
+    setInterval(() => {
+      const imgs = carousel.querySelectorAll('img');
+      imgs.forEach((img, i) => {
+        img.style.display = i === current ? 'block' : 'none';
+      });
+      current = (current + 1) % imgs.length;
+    }, 3000);
+  } else {
+    const img = document.createElement('img');
+    img.src = imagenes[0];
+    img.className = 'modal-img';
+    contenedorImagen.appendChild(img);
+  }
+
   document.getElementById('modalTitulo').textContent = producto.nombre;
   document.getElementById('modalDescripcion').textContent = producto.descripcion;
   document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
-  document.getElementById('modalProducto').style.display = 'flex';
+  modal.style.display = 'flex';
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) cerrarModal();
+  });
 }
 
 function cerrarModal() {
-  document.getElementById('modalProducto').style.display = 'none';
+  const modal = document.getElementById('modalProducto');
+  modal.style.display = 'none';
+  document.getElementById('modalImagen').innerHTML = '';
 }
 
 document.querySelector('.modal-cerrar')?.addEventListener('click', cerrarModal);
-
 document.getElementById('ver-mas')?.addEventListener('click', () => {
   productosMostrados += 8;
   renderizarProductos();
 });
-
 document.getElementById('ver-menos')?.addEventListener('click', () => {
   productosMostrados = 8;
   renderizarProductos();
 });
-
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
 document.addEventListener('DOMContentLoaded', () => {
