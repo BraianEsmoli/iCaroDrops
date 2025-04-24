@@ -149,16 +149,6 @@ function abrirModal(producto) {
     const wrapper = document.createElement('div');
     wrapper.className = 'carousel-wrapper';
 
-    const prevBtn = document.createElement('button');
-    prevBtn.className = 'carousel-control';
-    prevBtn.innerHTML = '&#10094;';
-    prevBtn.id = 'prevSlide';
-
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'carousel-control';
-    nextBtn.innerHTML = '&#10095;';
-    nextBtn.id = 'nextSlide';
-
     const inner = document.createElement('div');
     inner.className = 'carousel-inner';
     inner.id = 'carouselInner';
@@ -168,6 +158,16 @@ function abrirModal(producto) {
       img.src = src;
       inner.appendChild(img);
     });
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'carousel-control';
+    prevBtn.id = 'prevSlide';
+    prevBtn.innerHTML = '&#10094;';
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'carousel-control';
+    nextBtn.id = 'nextSlide';
+    nextBtn.innerHTML = '&#10095;';
 
     wrapper.appendChild(prevBtn);
     wrapper.appendChild(inner);
@@ -203,9 +203,9 @@ function abrirModal(producto) {
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
   modal.style.display = 'flex';
 
-  modal.onclick = e => {
+  modal.addEventListener('click', e => {
     if (e.target === modal) cerrarModal();
-  };
+  });
 }
 
 function cerrarModal() {
