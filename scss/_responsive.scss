@@ -103,6 +103,10 @@
 
   .info-producto {
     padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 
   .precio {
@@ -114,16 +118,18 @@
   }
 
   .acciones {
-    justify-content: flex-end;
-    gap: 0.8rem;
+    justify-content: space-between;
+    margin-top: auto;
+    align-items: flex-end;
+    display: flex;
   }
 
   .acciones .icono:first-child {
-    order: 1; /* ícono de info */
+    order: 1;
   }
 
   .acciones .icono:last-child {
-    order: 2; /* flecha */
+    order: 2;
     margin-left: auto;
   }
 

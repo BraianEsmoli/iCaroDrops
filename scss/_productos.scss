@@ -47,7 +47,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    flex-grow: 1;
   }
   
   .precio {
@@ -64,8 +64,11 @@
   .acciones {
     display: flex;
     justify-content: space-between;
-    margin-top: auto;
     align-items: flex-end;
+    margin-top: auto;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    flex-grow: 1;
   }
   
   .icono {
