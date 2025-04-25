@@ -1,4 +1,3 @@
-/* === CARRUSEL IMÁGENES LOOP === */
 .cap-carousel {
   width: 100%;
   height: 20vh;
@@ -7,11 +6,11 @@
   position: relative;
 }
 
+/* === Imagenes === */
 .carousel-track {
   display: flex;
-  gap: 0;
   height: 100%;
-  animation: scrollInfinite 30s linear infinite; /* velocidad aumentada */
+  animation: scrollInfinite 20s linear infinite;
 }
 
 .carousel-track img {
@@ -19,10 +18,10 @@
   height: 20vh;
   object-fit: cover;
   flex-shrink: 0;
-  filter: brightness(0.6); /* más oscuras */
+  filter: brightness(0.5);
 }
 
-/* === CARRUSEL DE TEXTO COMING SOON === */
+/* === Texto encima === */
 .carousel-text-track {
   position: absolute;
   top: 0;
@@ -30,21 +29,21 @@
   display: flex;
   height: 100%;
   align-items: center;
-  animation: scrollReverse 30s linear infinite; /* misma velocidad que img */
-  pointer-events: none;
   z-index: 2;
-  white-space: nowrap;
+  animation: scrollReverse 20s linear infinite;
+  pointer-events: none;
 }
 
 .coming-soon-text {
   font-family: 'bebasNeue', sans-serif;
-  font-size: 4vh; /* más grande */
-  color: #fff;
-  opacity: 0.95;
+  font-size: 5vh;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 4px #000;
   padding: 0 3em;
-  animation: blink 1.2s infinite alternate;
+  opacity: 0.9;
+  animation: blink 1.5s infinite alternate;
   white-space: nowrap;
-  text-shadow: 1px 1px 2px #000; /* más legible */
 }
 
 /* === PRODUCTO DESTACADO === */
