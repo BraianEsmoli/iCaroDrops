@@ -38,14 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* === CAROUSEL INFINITO SEC EXCLUSIVE === */
 window.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('carousel-track');
-  const images = [...track.children];
+  const images = [...track.querySelectorAll('.carousel-item')];
 
-  // Duplicamos dinámicamente
-  images.forEach(img => {
-    const clone = img.cloneNode(true);
+  images.forEach(item => {
+    const clone = item.cloneNode(true);
     track.appendChild(clone);
   });
 });
