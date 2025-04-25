@@ -177,22 +177,32 @@
   }
   .info-producto {
     padding: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
   }
   .precio {
     font-size: 0.9rem;
   }
   .nombre {
     font-size: 0.85rem;
+    margin-bottom: 0.5rem;
   }
   .acciones {
-    justify-content: flex-end;
-    gap: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: auto;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    flex-grow: 1;
   }
   .acciones .icono:first-child {
-    order: 1; /* ícono de info */
+    order: 1;
   }
   .acciones .icono:last-child {
-    order: 2; /* flecha */
+    order: 2;
     margin-left: auto;
   }
   .sold-out-label {
@@ -200,13 +210,11 @@
     padding: 2px 6px;
   }
   .modal-contenido {
-    padding: 1rem;
+    padding: 2rem;
+    max-width: 900px;
   }
   .modal-img {
-    max-width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
+    height: 300px;
   }
   #modalTitulo {
     font-size: 1.5rem !important;
@@ -561,6 +569,11 @@ body, html {
 .info-producto {
   padding: 0.75rem;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  flex-grow: 1;
 }
 
 .precio {
@@ -577,6 +590,8 @@ body, html {
 .acciones {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
 }
 
 .icono {
@@ -629,7 +644,7 @@ body, html {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .modal-contenido {
@@ -644,18 +659,11 @@ body, html {
 .modal-cerrar {
   position: absolute;
   top: 10px;
-  right: 20px;
+  right: 10px;
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
   z-index: 10;
-}
-
-.modal-img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
 }
 
 #modalTitulo {
@@ -690,6 +698,122 @@ body, html {
 .flecha-scroll:hover {
   transform: translateY(-3px);
   opacity: 1;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carousel-control {
+  font-size: 1.8rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-control:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.carousel-wrapper {
+  height: 300px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-inner img {
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.3em 0.6em;
+  z-index: 10;
+}
+
+#prevSlide {
+  left: 10px;
+}
+
+#nextSlide {
+  right: 10px;
+}
+
+/* Imagen principal del modal */
+#modalImagenPrincipal {
+  width: 100%;
+  max-width: 18em;
+  height: auto;
+  max-height: 18em;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Miniaturas a la izquierda */
+#modalThumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
+#modalThumbnails img {
+  width: 6.5em;
+  height: 6.5em;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+/* Miniaturas: hover y seleccionada */
+#modalThumbnails img:hover,
+#modalThumbnails img.selected {
+  border-color: #0d6efd;
+  box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
+  transform: scale(1.05);
+  transition: all 0.2s ease;
+}
+
+/* Eliminar scroll vertical de thumbnails */
+#thumbnailScrollWrapper {
+  overflow: visible !important;
+  max-height: none !important;
+}
+
+/* Detalles del modal: asegurar posición del botón */
+#modalProducto .col-5:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#modalWhatsapp {
+  align-self: center;
+  width: 100%;
+  max-width: 250px;
+  margin-top: auto;
 }
 
 /* === TOOLTIP DESKTOP === */
