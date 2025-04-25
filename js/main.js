@@ -162,6 +162,27 @@ function abrirModal(producto) {
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
 
   modal.show();
+
+  // Mostrar/ocultar flechas según cantidad de imágenes
+  const scrollUp = document.getElementById('scrollUp');
+  const scrollDown = document.getElementById('scrollDown');
+  
+  if (producto.imagenes.length > 3) {
+    scrollUp.style.display = 'block';
+    scrollDown.style.display = 'block';
+  } else {
+    scrollUp.style.display = 'none';
+    scrollDown.style.display = 'none';
+  }
+  
+  // Scroll manual
+  scrollUp.onclick = () => {
+    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
+  };
+  
+  scrollDown.onclick = () => {
+    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
+  };
 }
 
 // Botones ver más / ver menos
