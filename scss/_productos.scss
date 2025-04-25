@@ -119,7 +119,7 @@
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  padding: 1rem;
+  padding: 2.5rem 1rem; /* más espacio vertical */
   overflow: hidden;
 }
 
@@ -213,20 +213,18 @@
 }
 
 .btn-scroll {
-  background-color: rgba(255, 255, 255, 0.2);
+  background: none;
+  border: none;
   color: white;
   font-size: 1.5rem;
-  border: 2px solid white;
-  border-radius: 8px;
-  padding: 0.2em 0.4em;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%;
-  text-align: center;
+  padding: 0.2em;
+  transition: opacity 0.3s ease, transform 0.2s ease;
+  opacity: 0.8;
 }
 
 .btn-scroll:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  opacity: 1;
   transform: translateY(-2px);
 }
 
@@ -253,7 +251,6 @@
   color: #ccc !important;
   text-align: center;
 }
-
 /* === TOOLTIP DESKTOP === */
 .info-tooltip {
   position: relative;
