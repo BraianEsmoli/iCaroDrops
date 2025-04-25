@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
+/* === CAROUSEL === */
 window.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('carousel-track');
   const images = [...track.querySelectorAll('.carousel-item')];
