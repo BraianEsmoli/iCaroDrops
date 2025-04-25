@@ -163,36 +163,37 @@ function abrirModal(producto) {
 
   modal.show();
 
-// Mostrar/ocultar flechas según cantidad de imágenes
-const scrollUp = document.getElementById('scrollUp');
-const scrollDown = document.getElementById('scrollDown');
+  const scrollUp = document.getElementById('scrollUp');
+  const scrollDown = document.getElementById('scrollDown');
 
-if (producto.imagenes.length > 3) {
-  scrollUp.style.display = 'block';
-  scrollDown.style.display = 'block';
-} else {
-  scrollUp.style.display = 'none';
-  scrollDown.style.display = 'none';
+  if (producto.imagenes.length > 3) {
+    scrollUp.style.display = 'block';
+    scrollDown.style.display = 'block';
+  } else {
+    scrollUp.style.display = 'none';
+    scrollDown.style.display = 'none';
+  }
+
+  scrollUp.onclick = () => {
+    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
+  };
+
+  scrollDown.onclick = () => {
+    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
+  };
 }
-
-// Scroll manual
-scrollUp.onclick = () => {
-  document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
-};
-
-scrollDown.onclick = () => {
-  document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
-};
 
 // Botones ver más / ver menos
 document.getElementById('ver-mas')?.addEventListener('click', () => {
   productosMostrados += 8;
   renderizarProductos();
 });
+
 document.getElementById('ver-menos')?.addEventListener('click', () => {
   productosMostrados = 8;
   renderizarProductos();
 });
+
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
 document.addEventListener('DOMContentLoaded', () => {
@@ -208,4 +209,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
-}
