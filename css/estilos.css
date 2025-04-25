@@ -668,6 +668,12 @@ body, html {
   z-index: 10;
 }
 
+.modal-content .row {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  align-items: center !important;
+}
+
 #modalImagenPrincipal {
   width: 100%;
   max-width: 18em;
