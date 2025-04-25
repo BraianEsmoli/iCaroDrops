@@ -146,6 +146,7 @@
     </div>
   </div>
 </section>
+
 <!-- === PRODUCTOS REFORMULADOS PARA ESCALABILIDAD === -->
 <section class="productos-destacados py-5">
   <div class="container text-center">
@@ -171,8 +172,12 @@
     <div class="modal-content bg-dark text-white rounded-3 p-3">
       <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       <div class="row g-4 align-items-start">
-        <!-- Miniaturas -->
-        <div class="col-2 d-flex flex-column gap-2" id="modalThumbnails"></div>
+        <!-- Miniaturas scroll -->
+        <div class="col-2 overflow-hidden position-relative">
+          <div id="thumbnailScrollWrapper" class="d-flex flex-column gap-2 overflow-auto" style="max-height: 20em;" >
+            <div id="modalThumbnails" class="d-flex flex-column gap-2"></div>
+          </div>
+        </div>
 
         <!-- Imagen Principal -->
         <div class="col-5 text-center">

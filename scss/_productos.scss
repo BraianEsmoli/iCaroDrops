@@ -231,8 +231,17 @@
     right: 10px;
   }
 
+  #modalImagenPrincipal {
+    max-width: 20em;
+    max-height: 20em;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  
   #modalThumbnails img {
-    width: 100%;
+    width: 7em;
+    height: 7em;
+    object-fit: cover;
     border-radius: 6px;
     cursor: pointer;
     border: 2px solid transparent;
@@ -244,12 +253,21 @@
     border-color: #0d6efd;
   }
   
-  #modalImagenPrincipal {
-    max-height: 300px;
-    object-fit: contain;
-    width: 100%;
+  #thumbnailScrollWrapper {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
   }
   
+  #thumbnailScrollWrapper::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  #thumbnailScrollWrapper::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+  }
+  
+
   /* === TOOLTIP DESKTOP === */
 .info-tooltip {
     position: relative;
