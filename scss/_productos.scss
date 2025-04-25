@@ -234,17 +234,26 @@
 /* Imagen principal del modal */
 #modalImagenPrincipal {
   width: 100%;
-  height: 20em;
-  max-height: 20em;
+  max-width: 18em;
+  height: auto;
+  max-height: 18em;
   object-fit: contain;
   border-radius: 8px;
 }
 
 /* Miniaturas a la izquierda */
+#modalThumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+}
+
 #modalThumbnails img {
-  width: 100%;
-  max-width: 7em;
-  height: 7em;
+  width: 6.5em;
+  height: 6.5em;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
@@ -258,16 +267,10 @@
   border-color: #0d6efd;
 }
 
-/* Scroll personalizado para miniaturas */
-#thumbnailScrollWrapper::-webkit-scrollbar {
-  width: 6px;
-}
-#thumbnailScrollWrapper::-webkit-scrollbar-thumb {
-  background-color: #666;
-  border-radius: 3px;
-}
-#thumbnailScrollWrapper::-webkit-scrollbar-track {
-  background: transparent;
+/* Eliminar scroll vertical de thumbnails */
+#thumbnailScrollWrapper {
+  overflow: visible !important;
+  max-height: none !important;
 }
 
 /* Detalles del modal: asegurar posición del botón */
@@ -279,9 +282,10 @@
 
 #modalWhatsapp {
   align-self: center;
+  width: 100%;
+  max-width: 250px;
   margin-top: auto;
 }
-
   /* === TOOLTIP DESKTOP === */
 .info-tooltip {
     position: relative;

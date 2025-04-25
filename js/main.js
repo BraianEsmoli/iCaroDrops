@@ -145,7 +145,7 @@ function abrirModal(producto) {
     thumb.classList.toggle('selected', i === 0);
     thumb.addEventListener('click', () => {
       imagenPrincipal.src = img;
-      thumbnailsContainer.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
+      thumbnailsContainer.querySelectorAll('img').forEach(t => t.classList.remove('selected'));
       thumb.classList.add('selected');
     });
     thumbnailsContainer.appendChild(thumb);
