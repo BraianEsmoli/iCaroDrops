@@ -63,11 +63,10 @@ grid.appendChild(spinner);
 let productosMostrados = 8;
 let todosLosProductos = [];
 
-// Función para crear una card de producto
+// Crear tarjeta de producto
 function crearCard(producto) {
   const card = document.createElement('div');
   card.className = 'col-6 col-md-4 col-lg-3 producto-card';
-
   const estaAgotado = producto.agotado ? 'agotado' : '';
 
   card.innerHTML = `
@@ -76,9 +75,7 @@ function crearCard(producto) {
          data-descripcion="${producto.descripcion}"
          data-talles="${producto.talles}"
          data-imagenes='${JSON.stringify(producto.imagenes)}'>
-
       <img src="${producto.imagenes[0] || 'https://via.placeholder.com/300x200?text=Sin+Imagen'}" alt="${producto.nombre}">
-
       <div class="info-producto d-flex flex-column justify-content-between h-100">
         <div>
           <p class="precio">${producto.precio}</p>
@@ -95,25 +92,25 @@ function crearCard(producto) {
     </div>`;
 
   if (!producto.agotado) {
-    card.querySelector('.card-producto').addEventListener('click', () => {
-      abrirModal(producto);
-    });
+    card.querySelector('.card-producto').addEventListener('click', () => abrirModal(producto));
   }
 
   return card;
 }
 
+// Mostrar productos
 function renderizarProductos() {
   grid.innerHTML = '';
   const visibles = todosLosProductos.slice(0, productosMostrados);
   visibles.forEach(p => grid.appendChild(crearCard(p)));
-  document.getElementById('ver-mas').classList.toggle('d-none', productosMostrados >= todosLosProductos.length);
-  document.getElementById('ver-menos').classList.toggle('d-none', productosMostrados <= 8);
+
+  document.getElementById('ver-mas')?.classList.toggle('d-none', productosMostrados >= todosLosProductos.length);
+  document.getElementById('ver-menos')?.classList.toggle('d-none', productosMostrados <= 8);
 }
 
-// Renderizar productos desde backend (Vercel)
+// Obtener productos desde Notion vía backend
 fetch('https://icarodrops-backend.vercel.app/api/productos')
-  .then(response => response.json())
+  .then(res => res.json())
   .then(productos => {
     todosLosProductos = productos
       .map(p => ({
@@ -133,90 +130,33 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
     console.error('Error al obtener productos desde backend:', err);
   });
 
-// Modal
+// Modal Bootstrap
 function abrirModal(producto) {
   const modal = document.getElementById('modalProducto');
-  const contenedorImagen = document.getElementById('modalImagen');
-  contenedorImagen.innerHTML = '';
+  const inner = document.getElementById('carouselInner');
+  inner.innerHTML = '';
 
   const imagenes = producto.imagenes || [];
+  imagenes.forEach((src, i) => {
+    const div = document.createElement('div');
+    div.className = `carousel-item${i === 0 ? ' active' : ''}`;
+    div.innerHTML = `<img src="${src}" class="d-block w-100" alt="${producto.nombre}">`;
+    inner.appendChild(div);
+  });
 
-  if (imagenes.length > 1) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'carousel-wrapper';
-
-    const inner = document.createElement('div');
-    inner.className = 'carousel-inner d-flex';
-    inner.id = 'carouselInner';
-
-    imagenes.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = producto.nombre;
-      inner.appendChild(img);
-    });
-
-    const prevBtn = document.createElement('button');
-    prevBtn.className = 'carousel-control position-absolute start-0 top-50 translate-middle-y';
-    prevBtn.id = 'prevSlide';
-    prevBtn.innerHTML = '&#10094;';
-
-    const nextBtn = document.createElement('button');
-    nextBtn.className = 'carousel-control position-absolute end-0 top-50 translate-middle-y';
-    nextBtn.id = 'nextSlide';
-    nextBtn.innerHTML = '&#10095;';
-
-    wrapper.appendChild(prevBtn);
-    wrapper.appendChild(inner);
-    wrapper.appendChild(nextBtn);
-    contenedorImagen.appendChild(wrapper);
-
-    let current = 0;
-    const updateCarousel = () => {
-      inner.style.transform = `translateX(-${current * 100}%)`;
-    };
-
-    prevBtn.onclick = () => {
-      current = (current - 1 + imagenes.length) % imagenes.length;
-      updateCarousel();
-    };
-
-    nextBtn.onclick = () => {
-      current = (current + 1) % imagenes.length;
-      updateCarousel();
-    };
-
-    updateCarousel();
-  } else {
-    const img = document.createElement('img');
-    img.src = imagenes[0];
-    img.alt = producto.nombre;
-    img.className = 'modal-img';
-    contenedorImagen.appendChild(img);
-  }
+  document.querySelector('.carousel-control-prev').style.display = imagenes.length > 1 ? 'block' : 'none';
+  document.querySelector('.carousel-control-next').style.display = imagenes.length > 1 ? 'block' : 'none';
 
   document.getElementById('modalTitulo').textContent = producto.nombre;
   document.getElementById('modalDescripcion').textContent = producto.descripcion;
   document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
-  modal.style.display = 'flex';
 
-// Función para cerrar el modal
-function cerrarModal() {
-  const modal = document.getElementById('modalProducto');
-  modal.style.display = 'none';
-  document.getElementById('modalImagen').innerHTML = '';
+  const bsModal = new bootstrap.Modal(modal);
+  bsModal.show();
 }
 
-// Asegurarse que el evento click al botón de cerrar esté asignado
-document.addEventListener('DOMContentLoaded', () => {
-  const cerrarBtn = document.getElementById('cerrarModalBtn');
-  if (cerrarBtn) {
-    cerrarBtn.addEventListener('click', cerrarModal);
-  }
-});
-}
-
+// Botones ver más / ver menos
 document.getElementById('ver-mas')?.addEventListener('click', () => {
   productosMostrados += 8;
   renderizarProductos();
@@ -225,7 +165,6 @@ document.getElementById('ver-menos')?.addEventListener('click', () => {
   productosMostrados = 8;
   renderizarProductos();
 });
-
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
 document.addEventListener('DOMContentLoaded', () => {
