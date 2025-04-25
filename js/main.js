@@ -53,10 +53,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // === PRODUCTOS ===
 
-// main.js
-
-// main.js
-
 // Mostrar spinner de carga
 const grid = document.getElementById('productos-grid');
 const spinner = document.createElement('div');
@@ -150,7 +146,7 @@ function abrirModal(producto) {
     wrapper.className = 'carousel-wrapper';
 
     const inner = document.createElement('div');
-    inner.className = 'carousel-inner';
+    inner.className = 'carousel-inner d-flex';
     inner.id = 'carouselInner';
 
     imagenes.forEach(src => {
@@ -161,12 +157,12 @@ function abrirModal(producto) {
     });
 
     const prevBtn = document.createElement('button');
-    prevBtn.className = 'carousel-control';
+    prevBtn.className = 'carousel-control position-absolute start-0 top-50 translate-middle-y';
     prevBtn.id = 'prevSlide';
     prevBtn.innerHTML = '&#10094;';
 
     const nextBtn = document.createElement('button');
-    nextBtn.className = 'carousel-control';
+    nextBtn.className = 'carousel-control position-absolute end-0 top-50 translate-middle-y';
     nextBtn.id = 'nextSlide';
     nextBtn.innerHTML = '&#10095;';
 
@@ -208,12 +204,6 @@ function abrirModal(producto) {
   modal.addEventListener('click', e => {
     if (e.target === modal) cerrarModal();
   });
-}
-
-function cerrarModal() {
-  const modal = document.getElementById('modalProducto');
-  modal.style.display = 'none';
-  document.getElementById('modalImagen').innerHTML = '';
 }
 
 document.querySelector('.modal-cerrar')?.addEventListener('click', cerrarModal);
