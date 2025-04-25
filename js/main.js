@@ -143,11 +143,11 @@ function abrirModal(producto) {
   producto.imagenes.forEach((img, i) => {
     const thumb = document.createElement('img');
     thumb.src = img;
-    thumb.classList.toggle('selected', i === 0);
+    if (i === 0) thumb.classList.add('selected'); // Agrega esta línea correctamente
     thumb.addEventListener('click', () => {
       imagenPrincipal.src = img;
       thumbnailsContainer.querySelectorAll('img').forEach(t => t.classList.remove('selected'));
-      thumb.classList.add('selected');
+      thumb.classList.add('selected'); // Se asegura que solo una tenga la clase
     });
     thumbnailsContainer.appendChild(thumb);
   });
