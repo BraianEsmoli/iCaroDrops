@@ -668,42 +668,11 @@ body, html {
   z-index: 10;
 }
 
-/* Imagen principal centrada */
-#modalImagenPrincipal {
-  width: 100%;
-  max-width: 18em;
-  height: auto;
-  max-height: 18em;
-  object-fit: contain;
-  border-radius: 8px;
-  margin: 0 auto;
-  display: block;
-}
-
-/* Contenido derecho alineado horizontalmente */
-#modalProducto .col-5:last-child {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-}
-
-#modalWhatsapp {
-  align-self: center;
-  width: 100%;
-  max-width: 250px;
-  margin-top: auto;
-}
-
 /* Miniaturas scrollables sin scroll visible */
 #thumbnailScrollWrapper {
   max-height: 20em;
   overflow-y: auto;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
@@ -712,7 +681,45 @@ body, html {
   display: none;
 }
 
-/* Título, descripción y talles centrados */
+#modalThumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+}
+
+/* Imagen principal centrada visualmente */
+#modalImagenPrincipal {
+  width: 100%;
+  max-width: 18em;
+  max-height: 18em;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Contenido derecho bien alineado */
+#modalProducto .col-5:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+/* Botón centrado abajo */
+#modalWhatsapp {
+  align-self: center;
+  width: 100%;
+  max-width: 250px;
+  margin-top: auto;
+}
+
+/* Tipografías respetadas */
 #modalTitulo {
   font-family: "introRust", sans-serif;
   font-size: 35px !important;
