@@ -146,13 +146,13 @@ function abrirModal(producto) {
     thumb.alt = `Miniatura ${index + 1}`;
     thumb.classList.add('modal-thumb');
     if (index === 0) thumb.classList.add('selected');
-  
+
     thumb.addEventListener('click', () => {
       imagenPrincipal.src = src;
       thumbnailsContainer.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
       thumb.classList.add('selected');
     });
-  
+
     thumbnailsContainer.appendChild(thumb);
   });
 
@@ -166,7 +166,7 @@ function abrirModal(producto) {
   // Mostrar/ocultar flechas según cantidad de imágenes
   const scrollUp = document.getElementById('scrollUp');
   const scrollDown = document.getElementById('scrollDown');
-  
+
   if (producto.imagenes.length > 3) {
     scrollUp.style.display = 'block';
     scrollDown.style.display = 'block';
@@ -174,12 +174,12 @@ function abrirModal(producto) {
     scrollUp.style.display = 'none';
     scrollDown.style.display = 'none';
   }
-  
+
   // Scroll manual
   scrollUp.onclick = () => {
     document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
   };
-  
+
   scrollDown.onclick = () => {
     document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
   };

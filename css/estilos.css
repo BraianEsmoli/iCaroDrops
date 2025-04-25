@@ -817,12 +817,37 @@ body, html {
 }
 
 #thumbnailScrollWrapper {
-  max-height: 21em; /* 3 imágenes de 6.5em + gaps */
+  max-height: 21em; /* 3 imágenes de 6.5em aprox */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   scroll-behavior: smooth;
   margin: 0.5em 0;
+}
+
+#modalThumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  align-items: center;
+}
+
+#modalThumbnails img {
+  width: 6.5em;
+  height: 6.5em;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+#modalThumbnails img:hover,
+#modalThumbnails img.selected {
+  border-color: #0d6efd;
+  box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
+  transform: scale(1.05);
+  transition: all 0.2s ease;
 }
 
 .btn-scroll {
