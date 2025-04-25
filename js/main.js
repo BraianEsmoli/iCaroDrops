@@ -140,15 +140,19 @@ function abrirModal(producto) {
   thumbnailsContainer.innerHTML = '';
   imagenPrincipal.src = producto.imagenes?.[0] || 'https://via.placeholder.com/400x300?text=Sin+Imagen';
 
-  producto.imagenes.forEach((img, i) => {
+  producto.imagenes.forEach((src, index) => {
     const thumb = document.createElement('img');
-    thumb.src = img;
-    if (i === 0) thumb.classList.add('selected'); // Agrega esta línea correctamente
+    thumb.src = src;
+    thumb.alt = `Miniatura ${index + 1}`;
+    thumb.classList.add('modal-thumb');
+    if (index === 0) thumb.classList.add('selected');
+  
     thumb.addEventListener('click', () => {
-      imagenPrincipal.src = img;
-      thumbnailsContainer.querySelectorAll('img').forEach(t => t.classList.remove('selected'));
-      thumb.classList.add('selected'); // Se asegura que solo una tenga la clase
+      imagenPrincipal.src = src;
+      thumbnailsContainer.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
+      thumb.classList.add('selected');
     });
+  
     thumbnailsContainer.appendChild(thumb);
   });
 
