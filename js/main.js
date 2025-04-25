@@ -104,16 +104,9 @@ function renderizarProductos() {
   const visibles = todosLosProductos.slice(0, productosMostrados);
   visibles.forEach(p => grid.appendChild(crearCard(p)));
 
-  const btnVerMas = document.getElementById('ver-mas');
-  const btnVerMenos = document.getElementById('ver-menos');
-
-  if (todosLosProductos.length > 8) {
-    btnVerMas.classList.toggle('d-none', productosMostrados >= todosLosProductos.length);
-    btnVerMenos.classList.toggle('d-none', productosMostrados <= 8);
-  } else {
-    btnVerMas.classList.add('d-none');
-    btnVerMenos.classList.add('d-none');
-  }
+  const hayMasProductos = todosLosProductos.length > productosMostrados;
+  document.getElementById('ver-mas')?.classList.toggle('d-none', !hayMasProductos);
+  document.getElementById('ver-menos')?.classList.toggle('d-none', productosMostrados <= 8);
 }
 
 // Obtener productos desde Notion vía backend
