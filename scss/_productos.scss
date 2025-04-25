@@ -230,6 +230,26 @@
   #nextSlide {
     right: 10px;
   }
+
+  #modalThumbnails img {
+    width: 100%;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  
+  #modalThumbnails img:hover,
+  #modalThumbnails img.selected {
+    border-color: #0d6efd;
+  }
+  
+  #modalImagenPrincipal {
+    max-height: 300px;
+    object-fit: contain;
+    width: 100%;
+  }
+  
   /* === TOOLTIP DESKTOP === */
 .info-tooltip {
     position: relative;

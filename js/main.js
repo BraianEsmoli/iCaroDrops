@@ -132,28 +132,31 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
 
 // Modal Bootstrap
 function abrirModal(producto) {
-  const modal = document.getElementById('modalProducto');
-  const inner = document.getElementById('carouselInner');
-  inner.innerHTML = '';
+  const modal = new bootstrap.Modal(document.getElementById('modalProducto'));
+  const thumbnailsContainer = document.getElementById('modalThumbnails');
+  const imagenPrincipal = document.getElementById('modalImagenPrincipal');
 
-  const imagenes = producto.imagenes || [];
-  imagenes.forEach((src, i) => {
-    const div = document.createElement('div');
-    div.className = `carousel-item${i === 0 ? ' active' : ''}`;
-    div.innerHTML = `<img src="${src}" class="d-block w-100" alt="${producto.nombre}">`;
-    inner.appendChild(div);
+  thumbnailsContainer.innerHTML = '';
+  imagenPrincipal.src = producto.imagenes?.[0] || 'https://via.placeholder.com/400x300?text=Sin+Imagen';
+
+  producto.imagenes.forEach((img, i) => {
+    const thumb = document.createElement('img');
+    thumb.src = img;
+    thumb.classList.toggle('selected', i === 0);
+    thumb.addEventListener('click', () => {
+      imagenPrincipal.src = img;
+      thumbnailsContainer.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
+      thumb.classList.add('selected');
+    });
+    thumbnailsContainer.appendChild(thumb);
   });
-
-  document.querySelector('.carousel-control-prev').style.display = imagenes.length > 1 ? 'block' : 'none';
-  document.querySelector('.carousel-control-next').style.display = imagenes.length > 1 ? 'block' : 'none';
 
   document.getElementById('modalTitulo').textContent = producto.nombre;
   document.getElementById('modalDescripcion').textContent = producto.descripcion;
   document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
 
-  const bsModal = new bootstrap.Modal(modal);
-  bsModal.show();
+  modal.show();
 }
 
 // Botones ver más / ver menos
