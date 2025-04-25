@@ -206,7 +206,6 @@ function abrirModal(producto) {
   });
 }
 
-document.querySelector('.modal-cerrar')?.addEventListener('click', cerrarModal);
 document.getElementById('ver-mas')?.addEventListener('click', () => {
   productosMostrados += 8;
   renderizarProductos();
