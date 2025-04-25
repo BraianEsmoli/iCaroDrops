@@ -409,6 +409,7 @@ body, html {
   font-weight: normal;
   font-style: normal;
 }
+/* === CAROUSEL IMAGENES LOOP === */
 .cap-carousel {
   width: 100%;
   height: 20vh;
@@ -424,32 +425,11 @@ body, html {
   animation: scrollInfinite 60s linear infinite;
 }
 
-.carousel-item {
-  position: relative;
+.carousel-track img {
   width: 20vh;
   height: 20vh;
-  flex-shrink: 0;
-}
-
-.carousel-item img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  display: block;
-}
-
-.coming-soon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  font-family: "bebasNeue", sans-serif;
-  text-align: center;
-  font-size: 0.9rem;
-  padding: 0.2em 0;
-  letter-spacing: 1px;
+  flex-shrink: 0;
 }
 
 /* === PRODUCTO DESTACADO === */
