@@ -163,27 +163,26 @@ function abrirModal(producto) {
 
   modal.show();
 
-  // Mostrar/ocultar flechas según cantidad de imágenes
-  const scrollUp = document.getElementById('scrollUp');
-  const scrollDown = document.getElementById('scrollDown');
+// Mostrar/ocultar flechas según cantidad de imágenes
+const scrollUp = document.getElementById('scrollUp');
+const scrollDown = document.getElementById('scrollDown');
 
-  if (producto.imagenes.length > 3) {
-    scrollUp.style.display = 'block';
-    scrollDown.style.display = 'block';
-  } else {
-    scrollUp.style.display = 'none';
-    scrollDown.style.display = 'none';
-  }
-
-  // Scroll manual
-  scrollUp.onclick = () => {
-    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
-  };
-
-  scrollDown.onclick = () => {
-    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
-  };
+if (producto.imagenes.length > 3) {
+  scrollUp.style.display = 'block';
+  scrollDown.style.display = 'block';
+} else {
+  scrollUp.style.display = 'none';
+  scrollDown.style.display = 'none';
 }
+
+// Scroll manual
+scrollUp.onclick = () => {
+  document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
+};
+
+scrollDown.onclick = () => {
+  document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
+};
 
 // Botones ver más / ver menos
 document.getElementById('ver-mas')?.addEventListener('click', () => {
@@ -209,3 +208,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
+}

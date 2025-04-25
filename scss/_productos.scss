@@ -290,16 +290,17 @@
   margin-top: auto;
 }
 
-#thumbnailScrollWrapper {
-  max-height: 21em; /* 3 imágenes de 6.5em aprox */
+.thumbnail-scroll-wrapper {
+  max-height: 21em; /* ajustado para 3 thumbnails */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   scroll-behavior: smooth;
+  padding-right: 4px;
   margin: 0.5em 0;
 }
 
-#modalThumbnails {
+.scroll-thumbnails {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -332,6 +333,7 @@
   cursor: pointer;
   transition: opacity 0.3s ease;
   opacity: 0.6;
+  padding: 0;
 }
 
 .btn-scroll:hover {
