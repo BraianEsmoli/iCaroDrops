@@ -668,7 +668,33 @@ body, html {
   z-index: 10;
 }
 
-/* Miniaturas scrollables sin scroll visible */
+#modalImagenPrincipal {
+  width: 100%;
+  max-width: 18em;
+  height: auto;
+  max-height: 18em;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+}
+
+#modalProducto .col-5:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+#modalWhatsapp {
+  align-self: center;
+  width: 100%;
+  max-width: 250px;
+  margin-top: auto;
+}
+
 #thumbnailScrollWrapper {
   max-height: 20em;
   overflow-y: auto;
@@ -688,38 +714,39 @@ body, html {
   align-items: center;
 }
 
-/* Imagen principal centrada visualmente */
-#modalImagenPrincipal {
-  width: 100%;
-  max-width: 18em;
-  max-height: 18em;
-  height: auto;
-  object-fit: contain;
+#modalThumbnails img {
+  width: 6.5em;
+  height: 6.5em;
+  object-fit: cover;
   border-radius: 8px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-/* Contenido derecho bien alineado */
-#modalProducto .col-5:last-child {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  height: 100%;
+#modalThumbnails img:hover,
+#modalThumbnails img.selected {
+  border-color: #0d6efd;
+  box-shadow: 0 0 10px rgba(13, 110, 253, 0.6);
+  transform: scale(1.05);
 }
 
-/* Botón centrado abajo */
-#modalWhatsapp {
-  align-self: center;
-  width: 100%;
-  max-width: 250px;
-  margin-top: auto;
+.btn-scroll {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1.5rem;
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 0.2em 0.4em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Tipografías respetadas */
+.btn-scroll:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
 #modalTitulo {
   font-family: "introRust", sans-serif;
   font-size: 35px !important;
