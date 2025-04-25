@@ -231,42 +231,56 @@
     right: 10px;
   }
 
-  #modalImagenPrincipal {
-    max-width: 20em;
-    max-height: 20em;
-    object-fit: contain;
-    border-radius: 8px;
-  }
-  
-  #modalThumbnails img {
-    width: 7em;
-    height: 7em;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color 0.2s ease;
-  }
-  
-  #modalThumbnails img:hover,
-  #modalThumbnails img.selected {
-    border-color: #0d6efd;
-  }
-  
-  #thumbnailScrollWrapper {
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
-  }
-  
-  #thumbnailScrollWrapper::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  #thumbnailScrollWrapper::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 5px;
-  }
-  
+/* Imagen principal del modal */
+#modalImagenPrincipal {
+  width: 100%;
+  height: 20em;
+  max-height: 20em;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Miniaturas a la izquierda */
+#modalThumbnails img {
+  width: 100%;
+  max-width: 7em;
+  height: 7em;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+/* Miniaturas: hover y seleccionada */
+#modalThumbnails img:hover,
+#modalThumbnails img.selected {
+  border-color: #0d6efd;
+}
+
+/* Scroll personalizado para miniaturas */
+#thumbnailScrollWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+#thumbnailScrollWrapper::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 3px;
+}
+#thumbnailScrollWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Detalles del modal: asegurar posición del botón */
+#modalProducto .col-5:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#modalWhatsapp {
+  align-self: center;
+  margin-top: auto;
+}
 
   /* === TOOLTIP DESKTOP === */
 .info-tooltip {
