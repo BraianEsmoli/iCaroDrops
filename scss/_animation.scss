@@ -18,6 +18,20 @@
       transform: translateX(-50%);
     }
   }
+
+  @keyframes scrollReverse {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  @keyframes blink {
+    0% { opacity: 0.8; }
+    100% { opacity: 0.2; }
+  }
   
 /* === Fade in de productos nuevos === */
 @keyframes fadeInUp {

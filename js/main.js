@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === CAROUSEL INFINITO SEC EXCLUSIVE === */
 window.addEventListener('DOMContentLoaded', () => {
-  // Duplicar carrusel de imágenes
+  // Carrusel de imágenes
   const track = document.getElementById('carousel-track');
   const images = [...track.children];
   images.forEach(img => {
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
     track.appendChild(clone);
   });
 
-  // Duplicar carrusel de texto si existe
+  // Carrusel de texto "COMING SOON"
   const textTrack = document.querySelector('.carousel-text-track');
   if (textTrack) {
     const textos = [...textTrack.children];
@@ -58,6 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
 // === PRODUCTOS ===
 
