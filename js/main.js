@@ -40,16 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === CAROUSEL INFINITO SEC EXCLUSIVE === */
 window.addEventListener('DOMContentLoaded', () => {
+  // Duplicar carrusel de imágenes
   const track = document.getElementById('carousel-track');
   const images = [...track.children];
-
-  // Duplicamos dinámicamente
   images.forEach(img => {
     const clone = img.cloneNode(true);
     track.appendChild(clone);
   });
-});
 
+  // Duplicar carrusel de texto si existe
+  const textTrack = document.querySelector('.carousel-text-track');
+  if (textTrack) {
+    const textos = [...textTrack.children];
+    textos.forEach(txt => {
+      const clone = txt.cloneNode(true);
+      textTrack.appendChild(clone);
+    });
+  }
+});
 
 // === PRODUCTOS ===
 

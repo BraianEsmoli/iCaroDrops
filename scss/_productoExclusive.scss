@@ -22,6 +22,35 @@
     flex-shrink: 0;
   }
 
+  .carousel-text-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    animation: scrollInfinite 60s linear infinite;
+    pointer-events: none;
+    z-index: 5;
+  }
+  
+  .carousel-text-track span {
+    width: 20vh;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'bebasNeue', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    letter-spacing: 1px;
+    flex-shrink: 0;
+    text-align: center;
+    user-select: none;
+  }
+
 /* === PRODUCTO DESTACADO === */
 .producto-destacado {
     height: auto;
