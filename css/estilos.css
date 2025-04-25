@@ -686,6 +686,7 @@ body, html {
   align-items: center;
   text-align: center;
   height: 100%;
+  overflow: hidden;
 }
 
 #modalWhatsapp {
@@ -701,6 +702,9 @@ body, html {
   overflow-x: hidden;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  width: 100%;
+  padding: 0 0.2em;
+  box-sizing: border-box;
 }
 
 #thumbnailScrollWrapper::-webkit-scrollbar {
@@ -712,6 +716,7 @@ body, html {
   flex-direction: column;
   gap: 0.5em;
   align-items: center;
+  width: 100%;
 }
 
 #modalThumbnails img {
@@ -722,6 +727,7 @@ body, html {
   cursor: pointer;
   border: 2px solid transparent;
   transition: border-color 0.2s ease, transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 #modalThumbnails img:hover,
@@ -740,6 +746,8 @@ body, html {
   padding: 0.2em 0.4em;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  text-align: center;
 }
 
 .btn-scroll:hover {
