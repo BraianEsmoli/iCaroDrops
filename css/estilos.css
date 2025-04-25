@@ -288,7 +288,7 @@ body, html {
 }
 
 .hero {
-  background-image: url("../assets/fondoHero.png");
+  background-image: url("../assets/fondo.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
