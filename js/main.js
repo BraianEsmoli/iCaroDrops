@@ -37,13 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-/* === CAROUSEL === */
+
+/* === CAROUSEL INFINITO SEC EXCLUSIVE === */
 window.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('carousel-track');
-  const images = [...track.querySelectorAll('.carousel-item')];
+  const images = [...track.children];
 
-  images.forEach(item => {
-    const clone = item.cloneNode(true);
+  // Duplicamos dinámicamente
+  images.forEach(img => {
+    const clone = img.cloneNode(true);
     track.appendChild(clone);
   });
 });
@@ -156,10 +158,7 @@ function abrirModal(producto) {
 
   document.getElementById('modalTitulo').textContent = producto.nombre;
   document.getElementById('modalDescripcion').textContent = producto.descripcion;
-
-  const tallesText = producto.talles?.trim() ? `Talles disponibles: ${producto.talles}` : '';
-  document.getElementById('modalTalles').textContent = tallesText;
-
+  document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
 
   modal.show();
@@ -194,6 +193,7 @@ document.getElementById('ver-menos')?.addEventListener('click', () => {
   productosMostrados = 8;
   renderizarProductos();
 });
+
 
 /* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
 document.addEventListener('DOMContentLoaded', () => {
