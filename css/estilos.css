@@ -369,7 +369,7 @@ body, html {
 }
 @keyframes blink {
   0% {
-    opacity: 0.2;
+    opacity: 0.4;
   }
   100% {
     opacity: 1;
@@ -438,7 +438,7 @@ body, html {
   display: flex;
   gap: 0;
   height: 100%;
-  animation: scrollInfinite 60s linear infinite;
+  animation: scrollInfinite 30s linear infinite; /* velocidad aumentada */
 }
 
 .carousel-track img {
@@ -446,6 +446,7 @@ body, html {
   height: 20vh;
   object-fit: cover;
   flex-shrink: 0;
+  filter: brightness(0.6); /* más oscuras */
 }
 
 /* === CARRUSEL DE TEXTO COMING SOON === */
@@ -456,7 +457,7 @@ body, html {
   display: flex;
   height: 100%;
   align-items: center;
-  animation: scrollReverse 60s linear infinite;
+  animation: scrollReverse 30s linear infinite; /* misma velocidad que img */
   pointer-events: none;
   z-index: 2;
   white-space: nowrap;
@@ -464,12 +465,13 @@ body, html {
 
 .coming-soon-text {
   font-family: "bebasNeue", sans-serif;
-  font-size: 3vh;
+  font-size: 4vh; /* más grande */
   color: #fff;
-  opacity: 0.9;
-  padding: 0 2em;
+  opacity: 0.95;
+  padding: 0 3em;
   animation: blink 1.2s infinite alternate;
   white-space: nowrap;
+  text-shadow: 1px 1px 2px #000; /* más legible */
 }
 
 /* === PRODUCTO DESTACADO === */
