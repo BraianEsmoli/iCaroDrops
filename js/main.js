@@ -201,9 +201,20 @@ function abrirModal(producto) {
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
   modal.style.display = 'flex';
 
-  modal.addEventListener('click', e => {
-    if (e.target === modal) cerrarModal();
-  });
+// Función para cerrar el modal
+function cerrarModal() {
+  const modal = document.getElementById('modalProducto');
+  modal.style.display = 'none';
+  document.getElementById('modalImagen').innerHTML = '';
+}
+
+// Asegurarse que el evento click al botón de cerrar esté asignado
+document.addEventListener('DOMContentLoaded', () => {
+  const cerrarBtn = document.getElementById('cerrarModalBtn');
+  if (cerrarBtn) {
+    cerrarBtn.addEventListener('click', cerrarModal);
+  }
+});
 }
 
 document.getElementById('ver-mas')?.addEventListener('click', () => {
