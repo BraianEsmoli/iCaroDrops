@@ -59,27 +59,35 @@ document.getElementById('comingSoonForm').addEventListener('submit', function(e)
   });
 });
 
-// === Animación 3D única con Three.js ===
+// === Animación 3D del texto “COMING SOON” ===
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setSize(200, 200);
+const camera = new THREE.PerspectiveCamera(50, 2, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(400, 200);
 document.getElementById('animation-container').appendChild(renderer.domElement);
 
-const geometry = new THREE.IcosahedronGeometry(1, 0);
-const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-const mesh = new THREE.Mesh(geometry, material);
-scene.add(mesh);
+const loader = new THREE.FontLoader();
+loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+  const textGeometry = new THREE.TextGeometry('COMING SOON', {
+    font: font,
+    size: 1,
+    height: 0.2,
+    curveSegments: 12,
+  });
 
-camera.position.z = 3;
+  const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+  const textMesh = new THREE.Mesh(textGeometry, material);
+  scene.add(textMesh);
 
-function animate() {
-  requestAnimationFrame(animate);
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.01;
-  renderer.render(scene, camera);
-}
-animate();
+  camera.position.z = 5;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    textMesh.rotation.y += 0.01;
+    renderer.render(scene, camera);
+  }
+  animate();
+});
 
 
 // === PRODUCTOS ===

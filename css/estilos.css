@@ -486,16 +486,9 @@ body, html {
 }
 
 .animation-container {
-  width: 200px;
+  width: 400px;
   height: 200px;
-  margin-bottom: 10px;
-}
-
-.coming-text {
-  font-family: "Arial", sans-serif;
-  font-size: 2rem;
-  margin: 10px 0 20px;
-  letter-spacing: 2px;
+  margin-bottom: 20px;
 }
 
 .email-form {
