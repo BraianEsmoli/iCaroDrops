@@ -6,10 +6,10 @@
   height: 20vh;
 }
 
-.carousel-track, .carousel-text-track {
+.carousel-track,
+.carousel-text-track {
   display: flex;
-  width: max-content;
-  animation: scrollInfinite 20s linear infinite;
+  width: fit-content; /* ✅ Esto permite que el contenido crezca */
 }
 
 .carousel-track img {
@@ -28,6 +28,14 @@
   padding: 0 3em;
   opacity: 0.9;
   white-space: nowrap;
+}
+
+.carousel-track {
+  animation: scrollImages 20s linear infinite;
+}
+
+.carousel-text-track {
+  animation: scrollText 20s linear infinite;
 }
 /* === PRODUCTO DESTACADO === */
 .producto-destacado {

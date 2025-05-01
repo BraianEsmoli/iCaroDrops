@@ -44,13 +44,11 @@ window.addEventListener('load', () => {
   const textTrack = document.getElementById('carousel-text-track');
 
   if (imageTrack) {
-    const content = imageTrack.innerHTML;
-    imageTrack.innerHTML += content; // duplicar imágenes
+    imageTrack.innerHTML += imageTrack.innerHTML; // duplicar imágenes una vez
   }
 
   if (textTrack) {
-    const content = textTrack.innerHTML;
-    textTrack.innerHTML += content; // duplicar textos
+    textTrack.innerHTML += textTrack.innerHTML; // duplicar textos una vez
   }
 });
 
