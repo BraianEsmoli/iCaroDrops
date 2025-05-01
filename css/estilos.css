@@ -478,22 +478,35 @@ body, html {
 .cap-carousel {
   position: relative;
   width: 100%;
+  height: 20vh;
   overflow: hidden;
   background: #111;
-  height: 20vh;
 }
 
-.carousel-track,
-.carousel-text-track {
+.carousel-track {
   display: flex;
-  width: fit-content; /* ✅ Esto permite que el contenido crezca */
+  width: max-content;
+  animation: scrollImages 20s linear infinite;
 }
 
 .carousel-track img {
   width: 20vh;
   height: 20vh;
   object-fit: cover;
+  flex-shrink: 0;
   filter: brightness(0.5);
+}
+
+.carousel-text-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: max-content;
+  height: 100%;
+  align-items: center;
+  animation: scrollText 20s linear infinite reverse;
+  pointer-events: none;
 }
 
 .coming-soon-text {
@@ -505,14 +518,6 @@ body, html {
   padding: 0 3em;
   opacity: 0.9;
   white-space: nowrap;
-}
-
-.carousel-track {
-  animation: scrollImages 20s linear infinite;
-}
-
-.carousel-text-track {
-  animation: scrollText 20s linear infinite;
 }
 
 /* === PRODUCTO DESTACADO === */
