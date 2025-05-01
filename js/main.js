@@ -38,19 +38,48 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* === CAROUSEL INFINITO SEC EXCLUSIVE === */
-window.addEventListener('load', () => {
-  const imageTrack = document.getElementById('carousel-track');
-  const textTrack = document.getElementById('carousel-text-track');
+/* === COMING SOON === */
+// === Inicializar EmailJS ===
+(function() {
+  emailjs.init('xSrOCtorfN6gon9Sp'); // ← reemplaza con tu Public Key de EmailJS
+})();
 
-  if (imageTrack) {
-    imageTrack.innerHTML += imageTrack.innerHTML; // duplicar imágenes
-  }
+document.getElementById('comingSoonForm').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-  if (textTrack) {
-    textTrack.innerHTML += textTrack.innerHTML; // duplicar textos
-  }
+  emailjs.send('service_se1ukra', 'template_x3t3jdh', {
+      user_email: document.getElementById('user_email').value
+  })
+  .then(function() {
+      document.getElementById('formMessage').textContent = '¡Te hemos enviado el link! Revisa tu correo.';
+      document.getElementById('comingSoonForm').reset();
+  }, function(error) {
+      document.getElementById('formMessage').textContent = 'Error al enviar. Intenta de nuevo.';
+      console.error('Error:', error);
+  });
 });
+
+// === Animación 3D con Three.js ===
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(300, 300);
+document.getElementById('animation-container').appendChild(renderer.domElement);
+
+const geometry = new THREE.BoxGeometry();
+const material = new THREE.MeshBasicMaterial({ color: 0x0d6efd, wireframe: true });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+camera.position.z = 3;
+
+function animate() {
+  requestAnimationFrame(animate);
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+  renderer.render(scene, camera);
+}
+animate();
 
 
 // === PRODUCTOS ===

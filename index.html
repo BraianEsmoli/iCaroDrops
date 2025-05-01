@@ -13,6 +13,11 @@
 
   <!-- === ESTILOS === -->
   <link rel="stylesheet" href="css/estilos.css">
+
+  <!-- === COMING SOON CDNS === -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
  <!-- === Navbar === -->
@@ -96,62 +101,16 @@
 </section>
 
 
-<section class="cap-carousel">
-  <div class="carousel-text-track" id="carousel-text-track">
-    <span class="coming-soon-text">COMING SOON</span>
-    <span class="coming-soon-text">COMING SOON</span>
-    <span class="coming-soon-text">COMING SOON</span>
-    <span class="coming-soon-text">COMING SOON</span>
-  </div>
-  <div class="carousel-track" id="carousel-track">
-    <img src="assets/cap1.jpeg" alt="Gorra 1" />
-    <img src="assets/cap2.jpeg" alt="Gorra 2" />
-    <img src="assets/cap3.jpeg" alt="Gorra 3" />
-    <img src="assets/cap4.jpeg" alt="Gorra 4" />
-    <img src="assets/cap5.jpeg" alt="Gorra 5" />
-    <img src="assets/cap6.jpeg" alt="Gorra 6" />
-    <img src="assets/cap7.jpeg" alt="Gorra 7" />
-    <img src="assets/cap8.jpeg" alt="Gorra 8" />
-  </div>
-</section>
+<!-- === COMING SOON === -->
+<section class="coming-soon-section">
+  <div class="animation-container" id="animation-container"></div>
 
-<!-- === PRODUCTO EXCLUSIVE === -->
-<section class="producto-destacado position-relative">
-  <!-- Flecha decorativa izquierda -->
-  <div class="decoracion decoracion-up d-none d-md-block fade-up">
-    <img src="assets/capFlechasUp.png" alt="Decoración izquierda">
-  </div>
+  <form id="comingSoonForm" class="email-form">
+    <input type="email" id="user_email" name="user_email" placeholder="Ingresá tu email" required />
+    <button type="submit">Notificarme</button>
+  </form>
 
-  <!-- Flecha decorativa derecha -->
-  <div class="decoracion decoracion-down d-none d-md-block fade-up">
-    <img src="assets/capFlechasDown.png" alt="Decoración derecha">
-  </div>
-
-  <!-- Decoración X inferior izquierda -->
-  <div class="decoracion decoracion-x d-none d-md-block fade-up">
-    <img src="assets/decoracionX.png" alt="Decoración X">
-  </div>
-
-  <div class="container h-100 position-relative">
-    <div class="row h-100 flex-column flex-md-row">
-      
-      <!-- Texto -->
-      <div class="col-md-6 text-white text-center text-md-start z-1 fade-up">
-        <h2 class="titulo-producto">NEW ERA 59FIFTY</h2>
-        <h5 class="subtitulo-producto">NEW YORK YANKEES NAVY</h5>
-        <p class="descripcion-producto">
-          Gorras yankees original con estilo urbano,<br>
-          cerrada. CONSULTÁ YA POR STOCK!
-        </p>
-      </div>
-
-      <!-- Imagen -->
-      <div class="col-md-6 text-center z-1 fade-up">
-        <img src="assets/capProdExc.png" alt="Gorra Destacada" class="img-producto">
-      </div>
-
-    </div>
-  </div>
+  <p id="formMessage" class="form-message"></p>
 </section>
 
 <!-- === PRODUCTOS REFORMULADOS PARA ESCALABILIDAD === -->
