@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
   // Carrusel de imágenes
   const track = document.getElementById('carousel-track');
-  const images = [...track.children];
+  const images = [...track.querySelectorAll('img')];
   images.forEach(img => {
     const clone = img.cloneNode(true);
     track.appendChild(clone);
@@ -166,30 +166,34 @@ function abrirModal(producto) {
   });
 
   document.getElementById('modalTitulo').textContent = producto.nombre;
-  document.getElementById('modalDescripcion').textContent = producto.descripcion;
-  document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles}`;
+  document.getElementById('modalDescripcion').textContent = producto.descripcion || 'Sin descripción';
+  document.getElementById('modalTalles').textContent = `Talles disponibles: ${producto.talles || 'No especificados'}`;
   document.getElementById('modalWhatsapp').href = `https://wa.me/5492915661942?text=Hola! Quiero consultar por la gorra ${producto.nombre}`;
 
   modal.show();
 
+  // Manejo de flechas solo en desktop
   const scrollUp = document.getElementById('scrollUp');
   const scrollDown = document.getElementById('scrollDown');
+  const isDesktop = window.innerWidth >= 769;
 
-  if (producto.imagenes.length > 3) {
-    scrollUp.style.display = 'block';
-    scrollDown.style.display = 'block';
-  } else {
-    scrollUp.style.display = 'none';
-    scrollDown.style.display = 'none';
+  if (isDesktop && scrollUp && scrollDown) {
+    if (producto.imagenes.length > 3) {
+      scrollUp.style.display = 'block';
+      scrollDown.style.display = 'block';
+    } else {
+      scrollUp.style.display = 'none';
+      scrollDown.style.display = 'none';
+    }
+
+    scrollUp.onclick = () => {
+      document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
+    };
+
+    scrollDown.onclick = () => {
+      document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
+    };
   }
-
-  scrollUp.onclick = () => {
-    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
-  };
-
-  scrollDown.onclick = () => {
-    document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
-  };
 }
 
 // Botones ver más / ver menos

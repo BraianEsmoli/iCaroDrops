@@ -232,7 +232,7 @@
     }
   }
 
-/* MOBILE */
+/* === MOBILE SCROLL HORIZONTAL === */
 @media (max-width: 768px) {
   #thumbnailScrollWrapper {
     overflow-x: auto;
@@ -240,30 +240,27 @@
     width: 100%;
     padding: 0.5em 0;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #modalThumbnails {
+    flex-direction: row !important;
+    gap: 0.5em;
   }
 
   #modalThumbnails img {
-    width: 5em;
-    height: 5em;
+    width: 4.5em;
+    height: 4.5em;
     display: inline-block;
-    border-radius: 8px;
+  }
+
+  .btn-scroll {
+    display: none !important;
   }
 
   #modalImagenPrincipal {
     max-width: 100%;
     height: auto;
-  }
-
-  #modalTitulo {
-    font-size: 1.3rem !important;
-  }
-
-  #modalDescripcion {
-    font-size: 1rem;
-  }
-
-  #modalTalles {
-    font-size: 0.85rem;
   }
 
   #modalWhatsapp {
@@ -272,40 +269,33 @@
     margin: 1rem auto 0;
     display: block;
   }
-
-  .btn-scroll {
-    display: none !important;
-  }
 }
 
-/* DESKTOP */
+/* === DESKTOP SCROLL VERTICAL === */
 @media (min-width: 769px) {
   #thumbnailScrollWrapper {
     max-height: 20em;
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
   }
 
-  #modalThumbnails img {
-    width: 6.5em;
-    height: 6.5em;
-    margin-bottom: 0.5em;
-    border-radius: 8px;
+  #thumbnailScrollWrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  #modalThumbnails {
+    flex-direction: column !important;
+    gap: 0.5em;
+    align-items: center;
+    width: 100%;
   }
 
   #modalImagenPrincipal {
     max-width: 18em;
     max-height: 18em;
-  }
-
-  #modalTitulo {
-    font-size: 1.5rem !important;
-  }
-
-  #modalDescripcion,
-  #modalTalles {
-    text-align: center;
   }
 
   #modalWhatsapp {

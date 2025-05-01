@@ -182,17 +182,19 @@
       <div class="modal-body">
         <div class="row w-100 align-items-center justify-content-center">
           <!-- Miniaturas -->
-          <div class="col-12 col-md-2 d-flex flex-row flex-md-column align-items-center justify-content-center mb-3 mb-md-0">
+          <div class="col-12 col-md-2 d-flex flex-column align-items-center justify-content-center mb-3 mb-md-0">
+            <button id="scrollUp" class="btn-scroll d-none d-md-block">&#9650;</button>
             <div id="thumbnailScrollWrapper" class="thumbnail-scroll-wrapper w-100">
               <div id="modalThumbnails" class="scroll-thumbnails d-flex flex-row flex-md-column gap-2"></div>
             </div>
+            <button id="scrollDown" class="btn-scroll d-none d-md-block">&#9660;</button>
           </div>
-
+      
           <!-- Imagen Principal -->
           <div class="col-12 col-md-5 text-center mb-3 mb-md-0">
             <img id="modalImagenPrincipal" class="img-fluid rounded" src="" alt="Producto" />
           </div>
-
+      
           <!-- Detalles -->
           <div class="col-12 col-md-5 text-center">
             <h4 id="modalTitulo" class="mb-2 fw-bold"></h4>
