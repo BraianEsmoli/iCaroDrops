@@ -39,26 +39,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* === CAROUSEL INFINITO SEC EXCLUSIVE === */
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
   // Imagenes
   const track = document.getElementById('carousel-track');
-  const images = [...track.children];
-  track.innerHTML += track.innerHTML;
+  if (track) {
+    const originalContent = track.innerHTML;
+    track.innerHTML += originalContent; // duplicamos
 
-  const trackWidth = [...track.children].reduce((total, el) => total + el.offsetWidth, 0);
-  const duration = trackWidth / 50; // ajusta: más divisor → más rápido
-
-  track.style.animationDuration = `${duration}s`;
+    const totalWidth = Array.from(track.children).reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
+    track.style.width = `${totalWidth}px`;
+    track.style.animation = `scrollInfinite ${totalWidth / 100}px linear infinite`;
+  }
 
   // Texto
   const textTrack = document.getElementById('carousel-text-track');
   if (textTrack) {
-    textTrack.innerHTML += textTrack.innerHTML;
+    const originalText = textTrack.innerHTML;
+    textTrack.innerHTML += originalText; // duplicamos
 
-    const textWidth = [...textTrack.children].reduce((total, el) => total + el.offsetWidth, 0);
-    const textDuration = textWidth / 50;
-
-    textTrack.style.animationDuration = `${textDuration}s`;
+    const textWidth = Array.from(textTrack.children).reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
+    textTrack.style.width = `${textWidth}px`;
+    textTrack.style.animation = `scrollReverse ${textWidth / 100}px linear infinite`;
   }
 });
 
