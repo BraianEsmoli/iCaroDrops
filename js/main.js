@@ -40,15 +40,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === CAROUSEL INFINITO SEC EXCLUSIVE === */
 window.addEventListener('DOMContentLoaded', () => {
-  // Carrusel de imágenes
+  // Imagenes
   const track = document.getElementById('carousel-track');
   const images = [...track.children];
-  track.innerHTML += track.innerHTML; // duplicamos una sola vez para loop perfecto
+  track.innerHTML += track.innerHTML;
 
-  // Carrusel de texto
+  const trackWidth = [...track.children].reduce((total, el) => total + el.offsetWidth, 0);
+  const duration = trackWidth / 50; // ajusta: más divisor → más rápido
+
+  track.style.animationDuration = `${duration}s`;
+
+  // Texto
   const textTrack = document.getElementById('carousel-text-track');
   if (textTrack) {
-    textTrack.innerHTML += textTrack.innerHTML; // duplicamos una sola vez
+    textTrack.innerHTML += textTrack.innerHTML;
+
+    const textWidth = [...textTrack.children].reduce((total, el) => total + el.offsetWidth, 0);
+    const textDuration = textWidth / 50;
+
+    textTrack.style.animationDuration = `${textDuration}s`;
   }
 });
 

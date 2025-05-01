@@ -6,11 +6,10 @@
   position: relative;
 }
 
-/* === Imagenes === */
 .carousel-track {
   display: flex;
   height: 100%;
-  animation: scrollInfinite 40s linear infinite; /* duplicamos duración */
+  animation: scrollInfinite linear infinite;
 }
 
 .carousel-track img {
@@ -21,7 +20,6 @@
   filter: brightness(0.5);
 }
 
-/* === Texto encima === */
 .carousel-text-track {
   position: absolute;
   top: 0;
@@ -30,7 +28,7 @@
   height: 100%;
   align-items: center;
   z-index: 2;
-  animation: scrollReverse 40s linear infinite; /* duplicamos duración */
+  animation: scrollReverse linear infinite;
   pointer-events: none;
 }
 
@@ -45,6 +43,7 @@
   animation: blink 1.5s infinite alternate;
   white-space: nowrap;
 }
+
 /* === PRODUCTO DESTACADO === */
 .producto-destacado {
     height: auto;
