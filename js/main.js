@@ -145,6 +145,7 @@ function abrirModal(producto) {
   const modal = new bootstrap.Modal(document.getElementById('modalProducto'));
   const thumbnailsContainer = document.getElementById('modalThumbnails');
   const imagenPrincipal = document.getElementById('modalImagenPrincipal');
+  const thumbnailWrapper = document.getElementById('thumbnailScrollWrapper');
 
   thumbnailsContainer.innerHTML = '';
   imagenPrincipal.src = producto.imagenes?.[0] || 'https://via.placeholder.com/400x300?text=Sin+Imagen';
@@ -160,6 +161,14 @@ function abrirModal(producto) {
       imagenPrincipal.src = src;
       thumbnailsContainer.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
       thumb.classList.add('selected');
+
+      // Si está en mobile, centra la miniatura al hacer clic
+      if (window.innerWidth < 769) {
+        const thumbRect = thumb.getBoundingClientRect();
+        const wrapperRect = thumbnailWrapper.getBoundingClientRect();
+        const scrollOffset = thumb.offsetLeft - (wrapperRect.width / 2) + (thumbRect.width / 2);
+        thumbnailWrapper.scrollTo({ left: scrollOffset, behavior: 'smooth' });
+      }
     });
 
     thumbnailsContainer.appendChild(thumb);
@@ -172,7 +181,6 @@ function abrirModal(producto) {
 
   modal.show();
 
-  // Manejo de flechas solo en desktop
   const scrollUp = document.getElementById('scrollUp');
   const scrollDown = document.getElementById('scrollDown');
   const isDesktop = window.innerWidth >= 769;
@@ -187,12 +195,15 @@ function abrirModal(producto) {
     }
 
     scrollUp.onclick = () => {
-      document.getElementById('thumbnailScrollWrapper').scrollBy({ top: -100, behavior: 'smooth' });
+      thumbnailWrapper.scrollBy({ top: -100, behavior: 'smooth' });
     };
 
     scrollDown.onclick = () => {
-      document.getElementById('thumbnailScrollWrapper').scrollBy({ top: 100, behavior: 'smooth' });
+      thumbnailWrapper.scrollBy({ top: 100, behavior: 'smooth' });
     };
+  } else {
+    if (scrollUp) scrollUp.style.display = 'none';
+    if (scrollDown) scrollDown.style.display = 'none';
   }
 }
 
