@@ -187,65 +187,57 @@
     display: none !important;
   }
 
-  /* Miniaturas horizontal */
-  #thumbnailScrollWrapper.horizontal {
-    max-height: none;
-    max-width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 0.5em 0;
-    white-space: nowrap;
-  }
-
-  #modalThumbnails.horizontal {
-    flex-direction: row;
-    gap: 0.5em;
+  #modalProducto .modal-body {
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    gap: 1rem;
   }
 
-  #modalThumbnails.horizontal img {
-    width: 5em;
-    height: 5em;
-    display: inline-block;
-    border-radius: 8px;
+  #thumbnailScrollWrapper {
+    max-height: 20em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
   }
 
-  /* Ocultar botones de scroll en mobile */
-  .btn-scroll {
-    display: none !important;
+  #modalThumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
   }
 
-  /* Imagen principal centrada y ajustada */
+  #modalThumbnails img {
+    width: 6.5em;
+    height: 6.5em;
+  }
+
   #modalImagenPrincipal {
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
+    max-width: 18em;
+    max-height: 18em;
   }
 
-  /* Ajuste de textos */
   #modalTitulo {
-    font-size: 1.3rem !important;
+    font-size: 1.5rem !important;
     text-align: center;
   }
 
-  #modalDescripcion {
-    font-size: 1rem;
-    text-align: center;
-  }
-
+  #modalDescripcion,
   #modalTalles {
-    font-size: 0.85rem;
     text-align: center;
   }
 
-  /* Botón WhatsApp centrado */
   #modalWhatsapp {
-    width: 80%;
+    width: 100%;
     max-width: 250px;
-    margin: 1rem auto 0;
-    display: block;
+    margin-top: auto;
   }
+
+
   /* === FOOTER === */
   .footer-content {
     text-align: center;
@@ -290,4 +282,66 @@
       transition: opacity 0.4s ease;
     }
   }
+
+/* === MODAL MOBILE === */
+@media (max-width: 768px) {
+  #modalProducto .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #thumbnailScrollWrapper.horizontal {
+    max-height: none;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5em 0;
+    white-space: nowrap;
+  }
+
+  #modalThumbnails.horizontal {
+    flex-direction: row;
+    gap: 0.5em;
+    display: flex;
+    align-items: center;
+  }
+
+  #modalThumbnails.horizontal img {
+    width: 5em;
+    height: 5em;
+    display: inline-block;
+    border-radius: 8px;
+  }
+
+  .btn-scroll {
+    display: none !important;
+  }
+
+  #modalImagenPrincipal {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  #modalTitulo {
+    font-size: 1.3rem !important;
+  }
+
+  #modalDescripcion {
+    font-size: 1rem;
+  }
+
+  #modalTalles {
+    font-size: 0.85rem;
+  }
+
+  #modalWhatsapp {
+    width: 80%;
+    max-width: 250px;
+    margin: 1rem auto 0;
+    display: block;
+  }
+}
   
