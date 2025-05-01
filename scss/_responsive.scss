@@ -232,7 +232,7 @@
     }
   }
 
-/* === MODAL MOBILE (hasta 768px) === */
+/* MOBILE */
 @media (max-width: 768px) {
   #thumbnailScrollWrapper {
     overflow-x: auto;
@@ -278,12 +278,13 @@
   }
 }
 
-/* === MODAL DESKTOP (desde 769px) === */
+/* DESKTOP */
 @media (min-width: 769px) {
   #thumbnailScrollWrapper {
     max-height: 20em;
     overflow-y: auto;
     overflow-x: hidden;
+    width: 100%;
   }
 
   #modalThumbnails img {

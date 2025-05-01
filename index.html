@@ -173,28 +173,33 @@
   </div>
 </section>
 
-<!-- MODAL BOOTSTRAP ACTUALIZADO PARA MOBILE -->
+<!-- MODAL BOOTSTRAP -->
 <div class="modal fade" id="modalProducto" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content bg-dark text-white rounded-3 p-3">
       <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+
       <div class="modal-body">
-        <!-- Miniaturas horizontal (mobile-friendly) -->
-        <div id="thumbnailScrollWrapper" class="thumbnail-scroll-wrapper horizontal">
-          <div id="modalThumbnails" class="scroll-thumbnails horizontal"></div>
-        </div>
+        <div class="row w-100 align-items-center justify-content-center">
+          <!-- Miniaturas -->
+          <div class="col-12 col-md-2 d-flex flex-row flex-md-column align-items-center justify-content-center mb-3 mb-md-0">
+            <div id="thumbnailScrollWrapper" class="thumbnail-scroll-wrapper w-100">
+              <div id="modalThumbnails" class="scroll-thumbnails d-flex flex-row flex-md-column gap-2"></div>
+            </div>
+          </div>
 
-        <!-- Imagen Principal -->
-        <div class="text-center my-3">
-          <img id="modalImagenPrincipal" class="img-fluid rounded" src="" alt="Producto" />
-        </div>
+          <!-- Imagen Principal -->
+          <div class="col-12 col-md-5 text-center mb-3 mb-md-0">
+            <img id="modalImagenPrincipal" class="img-fluid rounded" src="" alt="Producto" />
+          </div>
 
-        <!-- Detalles -->
-        <div class="text-center">
-          <h4 id="modalTitulo" class="mb-2 fw-bold"></h4>
-          <p id="modalDescripcion" class="mb-2"></p>
-          <p id="modalTalles" class="text-muted mb-3"></p>
-          <a id="modalWhatsapp" target="_blank" class="btn btn-success">Consultar por stock!</a>
+          <!-- Detalles -->
+          <div class="col-12 col-md-5 text-center">
+            <h4 id="modalTitulo" class="mb-2 fw-bold"></h4>
+            <p id="modalDescripcion" class="mb-2"></p>
+            <p id="modalTalles" class="text-muted mb-3"></p>
+            <a id="modalWhatsapp" target="_blank" class="btn btn-success">Consultar por stock!</a>
+          </div>
         </div>
       </div>
     </div>
