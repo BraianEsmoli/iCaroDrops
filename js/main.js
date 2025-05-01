@@ -42,20 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
   // Carrusel de imágenes
   const track = document.getElementById('carousel-track');
-  const images = [...track.querySelectorAll('img')];
-  images.forEach(img => {
-    const clone = img.cloneNode(true);
-    track.appendChild(clone);
-  });
+  const images = [...track.children];
+  track.innerHTML += track.innerHTML; // duplicamos una sola vez para loop perfecto
 
-  // Carrusel de texto "COMING SOON"
-  const textTrack = document.querySelector('.carousel-text-track');
+  // Carrusel de texto
+  const textTrack = document.getElementById('carousel-text-track');
   if (textTrack) {
-    const textos = [...textTrack.children];
-    textos.forEach(txt => {
-      const clone = txt.cloneNode(true);
-      textTrack.appendChild(clone);
-    });
+    textTrack.innerHTML += textTrack.innerHTML; // duplicamos una sola vez
   }
 });
 

@@ -10,7 +10,7 @@
 .carousel-track {
   display: flex;
   height: 100%;
-  animation: scrollInfinite 20s linear infinite;
+  animation: scrollInfinite 40s linear infinite; /* duplicamos duración */
 }
 
 .carousel-track img {
@@ -30,7 +30,7 @@
   height: 100%;
   align-items: center;
   z-index: 2;
-  animation: scrollReverse 20s linear infinite;
+  animation: scrollReverse 40s linear infinite; /* duplicamos duración */
   pointer-events: none;
 }
 
@@ -45,7 +45,6 @@
   animation: blink 1.5s infinite alternate;
   white-space: nowrap;
 }
-
 /* === PRODUCTO DESTACADO === */
 .producto-destacado {
     height: auto;

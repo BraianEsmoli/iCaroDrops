@@ -426,10 +426,10 @@ body, html {
   }
 }
 @keyframes blink {
-  0% {
-    opacity: 0.4;
+  from {
+    opacity: 0.7;
   }
-  100% {
+  to {
     opacity: 1;
   }
 }
@@ -495,7 +495,7 @@ body, html {
 .carousel-track {
   display: flex;
   height: 100%;
-  animation: scrollInfinite 20s linear infinite;
+  animation: scrollInfinite 40s linear infinite; /* duplicamos duración */
 }
 
 .carousel-track img {
@@ -515,7 +515,7 @@ body, html {
   height: 100%;
   align-items: center;
   z-index: 2;
-  animation: scrollReverse 20s linear infinite;
+  animation: scrollReverse 40s linear infinite; /* duplicamos duración */
   pointer-events: none;
 }
 
