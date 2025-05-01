@@ -186,6 +186,66 @@
   .info-tooltip {
     display: none !important;
   }
+
+  /* Miniaturas horizontal */
+  #thumbnailScrollWrapper.horizontal {
+    max-height: none;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0.5em 0;
+    white-space: nowrap;
+  }
+
+  #modalThumbnails.horizontal {
+    flex-direction: row;
+    gap: 0.5em;
+    display: flex;
+    align-items: center;
+  }
+
+  #modalThumbnails.horizontal img {
+    width: 5em;
+    height: 5em;
+    display: inline-block;
+    border-radius: 8px;
+  }
+
+  /* Ocultar botones de scroll en mobile */
+  .btn-scroll {
+    display: none !important;
+  }
+
+  /* Imagen principal centrada y ajustada */
+  #modalImagenPrincipal {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  /* Ajuste de textos */
+  #modalTitulo {
+    font-size: 1.3rem !important;
+    text-align: center;
+  }
+
+  #modalDescripcion {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  #modalTalles {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  /* Botón WhatsApp centrado */
+  #modalWhatsapp {
+    width: 80%;
+    max-width: 250px;
+    margin: 1rem auto 0;
+    display: block;
+  }
   /* === FOOTER === */
   .footer-content {
     text-align: center;
