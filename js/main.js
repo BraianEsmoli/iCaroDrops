@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /* === COMING SOON === */
 // === Inicializar EmailJS ===
 (function() {
-  emailjs.init('xSrOCtorfN6gon9Sp'); // ← reemplaza con tu Public Key de EmailJS
+  emailjs.init('xSrOCtorfN6gon9Sp');
 })();
 
 document.getElementById('comingSoonForm').addEventListener('submit', function(e) {
@@ -59,24 +59,24 @@ document.getElementById('comingSoonForm').addEventListener('submit', function(e)
   });
 });
 
-// === Animación 3D con Three.js ===
+// === Animación 3D única con Three.js ===
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setSize(300, 300);
+renderer.setSize(200, 200);
 document.getElementById('animation-container').appendChild(renderer.domElement);
 
-const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x0d6efd, wireframe: true });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+const geometry = new THREE.IcosahedronGeometry(1, 0);
+const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
 
 camera.position.z = 3;
 
 function animate() {
   requestAnimationFrame(animate);
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.01;
   renderer.render(scene, camera);
 }
 animate();
