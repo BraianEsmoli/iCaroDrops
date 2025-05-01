@@ -162,7 +162,7 @@ function abrirModal(producto) {
       thumbnailsContainer.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
       thumb.classList.add('selected');
 
-      // Si está en mobile, centra la miniatura al hacer clic
+      // En mobile: centrar miniatura al hacer clic
       if (window.innerWidth < 769) {
         const thumbRect = thumb.getBoundingClientRect();
         const wrapperRect = thumbnailWrapper.getBoundingClientRect();
@@ -173,6 +173,24 @@ function abrirModal(producto) {
 
     thumbnailsContainer.appendChild(thumb);
   });
+
+  // → Mobile extra: deslizar tocando a izquierda/derecha
+  if (window.innerWidth < 769) {
+    let startX = 0;
+    let scrollLeft = 0;
+
+    thumbnailWrapper.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].pageX - thumbnailWrapper.offsetLeft;
+      scrollLeft = thumbnailWrapper.scrollLeft;
+    });
+
+    thumbnailWrapper.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const x = e.touches[0].pageX - thumbnailWrapper.offsetLeft;
+      const walk = (x - startX) * 1.5; // sensibilidad del swipe
+      thumbnailWrapper.scrollLeft = scrollLeft - walk;
+    }, { passive: false });
+  }
 
   document.getElementById('modalTitulo').textContent = producto.nombre;
   document.getElementById('modalDescripcion').textContent = producto.descripcion || 'Sin descripción';
