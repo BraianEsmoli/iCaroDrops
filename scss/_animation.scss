@@ -19,11 +19,6 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(50%); }
 }
-
-@keyframes blink {
-  from { opacity: 0.7; }
-  to { opacity: 1; }
-}
 /* === Fade in de productos nuevos === */
 @keyframes fadeInUp {
     0% {

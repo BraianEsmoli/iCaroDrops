@@ -425,14 +425,6 @@ body, html {
     transform: translateX(50%);
   }
 }
-@keyframes blink {
-  from {
-    opacity: 0.7;
-  }
-  to {
-    opacity: 1;
-  }
-}
 /* === Fade in de productos nuevos === */
 @keyframes fadeInUp {
   0% {
@@ -491,10 +483,11 @@ body, html {
   position: relative;
 }
 
-.carousel-track {
+.carousel-track,
+.carousel-text-track {
   display: flex;
   height: 100%;
-  animation: scrollInfinite linear infinite;
+  white-space: nowrap;
 }
 
 .carousel-track img {
@@ -503,18 +496,6 @@ body, html {
   object-fit: cover;
   flex-shrink: 0;
   filter: brightness(0.5);
-}
-
-.carousel-text-track {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  z-index: 2;
-  animation: scrollReverse linear infinite;
-  pointer-events: none;
 }
 
 .coming-soon-text {
@@ -526,7 +507,6 @@ body, html {
   padding: 0 3em;
   opacity: 0.9;
   animation: blink 1.5s infinite alternate;
-  white-space: nowrap;
 }
 
 /* === PRODUCTO DESTACADO === */
