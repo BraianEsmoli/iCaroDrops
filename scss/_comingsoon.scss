@@ -5,14 +5,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
   overflow: hidden;
 }
 
-.animation-container canvas {
+.animation-container {
   width: 100%;
-  height: auto;
   max-width: 600px;
+  height: 200px;
 }
 
 .email-form {

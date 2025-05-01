@@ -59,28 +59,27 @@ document.getElementById('comingSoonForm').addEventListener('submit', function(e)
   });
 });
 
-// === Animación 3D del texto “COMING SOON” ===
+// Three.js — Animación texto “COMING SOON”
 const container = document.getElementById('animation-container');
-container.innerHTML = ''; // Limpia cualquier canvas previo
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(50, container.clientWidth / 200, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 renderer.setSize(container.clientWidth, 200);
 container.appendChild(renderer.domElement);
 
+// Cargar fuente
 const loader = new THREE.FontLoader();
 loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
-  const textGeometry = new THREE.TextGeometry('COMING SOON', {
+  const geometry = new THREE.TextGeometry('COMING SOON', {
     font: font,
     size: 1,
-    height: 0.2,
+    height: 0.1,
     curveSegments: 12,
   });
+  geometry.center();
 
   const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
-  const textMesh = new THREE.Mesh(textGeometry, material);
-  textGeometry.center();
+  const textMesh = new THREE.Mesh(geometry, material);
   scene.add(textMesh);
 
   camera.position.z = 5;
@@ -91,6 +90,8 @@ loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json
     renderer.render(scene, camera);
   }
   animate();
+}, function(error) {
+  console.error('Error loading font:', error);
 });
 
 
