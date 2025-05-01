@@ -40,26 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === CAROUSEL INFINITO SEC EXCLUSIVE === */
 window.addEventListener('load', () => {
-  // Imagenes
-  const track = document.getElementById('carousel-track');
-  if (track) {
-    const originalContent = track.innerHTML;
-    track.innerHTML += originalContent; // duplicamos
+  const imageTrack = document.getElementById('carousel-track');
+  const textTrack = document.getElementById('carousel-text-track');
 
-    const totalWidth = Array.from(track.children).reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
-    track.style.width = `${totalWidth}px`;
-    track.style.animation = `scrollInfinite ${totalWidth / 100}px linear infinite`;
+  if (imageTrack) {
+    const content = imageTrack.innerHTML;
+    imageTrack.innerHTML += content; // duplicar imágenes
   }
 
-  // Texto
-  const textTrack = document.getElementById('carousel-text-track');
   if (textTrack) {
-    const originalText = textTrack.innerHTML;
-    textTrack.innerHTML += originalText; // duplicamos
-
-    const textWidth = Array.from(textTrack.children).reduce((sum, el) => sum + el.getBoundingClientRect().width, 0);
-    textTrack.style.width = `${textWidth}px`;
-    textTrack.style.animation = `scrollReverse ${textWidth / 100}px linear infinite`;
+    const content = textTrack.innerHTML;
+    textTrack.innerHTML += content; // duplicar textos
   }
 });
 
