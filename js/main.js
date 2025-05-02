@@ -174,11 +174,13 @@ fetch('https://icarodrops-backend.vercel.app/api/productos')
         imagenes: Array.isArray(p.imagenes) && p.imagenes.length > 0 ? p.imagenes : ['https://via.placeholder.com/300x200?text=Sin+Imagen']
       }))
       .sort((a, b) => {
+        // Si uno está agotado y el otro no, el agotado va abajo
         if (a.agotado && !b.agotado) return 1;
         if (!a.agotado && b.agotado) return -1;
         return 0;
       });
 
+    llenarTallesUnicos();
     renderizarProductos();
   })
   .catch(err => {
@@ -340,6 +342,13 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       filtrados.sort((a, b) => parseFloat(a.precio.replace('$', '')) - parseFloat(b.precio.replace('$', '')));
     }
+    
+    // Siempre colocar los agotados al final
+    filtrados.sort((a, b) => {
+      if (a.agotado && !b.agotado) return 1;
+      if (!a.agotado && b.agotado) return -1;
+      return 0;
+    });
 
     grid.innerHTML = '';
     filtrados.slice(0, productosMostrados).forEach(p => grid.appendChild(crearCard(p)));
