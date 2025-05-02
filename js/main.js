@@ -39,59 +39,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* === COMING SOON === */
-// === Inicializar EmailJS ===
-(function() {
-  emailjs.init('xSrOCtorfN6gon9Sp');
-})();
-
-document.getElementById('comingSoonForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  emailjs.send('service_se1ukra', 'template_x3t3jdh', {
-      user_email: document.getElementById('user_email').value
-  })
-  .then(function() {
-      document.getElementById('formMessage').textContent = '¡Te hemos enviado el link! Revisa tu correo.';
-      document.getElementById('comingSoonForm').reset();
-  }, function(error) {
-      document.getElementById('formMessage').textContent = 'Error al enviar. Intenta de nuevo.';
-      console.error('Error:', error);
-  });
-});
-
-// Three.js — Animación texto “COMING SOON”
+// === Three.js COMING SOON mejorado ===
 const container = document.getElementById('animation-container');
+const width = container.clientWidth;
+const height = container.clientHeight;
+
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(50, container.clientWidth / 200, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 1000);
+camera.position.z = 10;
+
 const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-renderer.setSize(container.clientWidth, 200);
+renderer.setSize(width, height);
 container.appendChild(renderer.domElement);
 
-// Cargar fuente
+// Luz ambiente + direccional
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 10, 7.5);
+scene.add(directionalLight);
+
+// Cargar fuente y crear texto sólido + metálico
 const loader = new THREE.FontLoader();
-loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+loader.load('https://threejs.org/examples/fonts/helvetiker_bold.typeface.json', function(font) {
   const geometry = new THREE.TextGeometry('COMING SOON', {
     font: font,
     size: 1,
-    height: 0.1,
+    height: 0.3,
     curveSegments: 12,
+    bevelEnabled: true,
+    bevelThickness: 0.03,
+    bevelSize: 0.02,
+    bevelSegments: 5,
   });
   geometry.center();
 
-  const material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true });
+  const material = new THREE.MeshStandardMaterial({
+    color: 0xffd700, // dorado
+    metalness: 0.9,
+    roughness: 0.2,
+  });
+
   const textMesh = new THREE.Mesh(geometry, material);
   scene.add(textMesh);
 
-  camera.position.z = 5;
-
+  // Animación
   function animate() {
     requestAnimationFrame(animate);
     textMesh.rotation.y += 0.01;
+    textMesh.rotation.x = Math.sin(Date.now() * 0.001) * 0.1;
     renderer.render(scene, camera);
   }
   animate();
 }, function(error) {
   console.error('Error loading font:', error);
+});
+
+// Ajustar al redimensionar
+window.addEventListener('resize', () => {
+  const newWidth = container.clientWidth;
+  const newHeight = container.clientHeight;
+  camera.aspect = newWidth / newHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(newWidth, newHeight);
 });
 
 
