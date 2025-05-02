@@ -47,11 +47,11 @@
   .hero::after {
     content: "";
     position: absolute;
-    bottom: -40px; /* lo empuja hacia la sección productos */
+    bottom: -40px; /* sigue bajando sobre productos */
     left: 0;
     width: 100%;
-    height: 80px; /* altura del gradiente */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000 100%);
-    pointer-events: none; /* no interfiere con clics */
+    height: 80px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #000 100%);
+    pointer-events: none;
     z-index: 2;
   }
