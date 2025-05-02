@@ -309,34 +309,3 @@ window.addEventListener('wheel', (e) => {
     });
   }
 });
-
-window.addEventListener('touchstart', handleTouchStart, false);
-window.addEventListener('touchmove', handleTouchMove, false);
-
-let xDown = null;
-let yDown = null;
-
-function handleTouchStart(evt) {
-  const firstTouch = evt.touches[0];
-  xDown = firstTouch.clientX;
-  yDown = firstTouch.clientY;
-}
-
-function handleTouchMove(evt) {
-  if (!xDown || !yDown || hasScrolled) return;
-
-  const xUp = evt.touches[0].clientX;
-  const yUp = evt.touches[0].clientY;
-  const yDiff = yDown - yUp;
-
-  if (yDiff > 30) { // detecta swipe hacia arriba
-    hasScrolled = true;
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth'
-    });
-  }
-
-  xDown = null;
-  yDown = null;
-}
