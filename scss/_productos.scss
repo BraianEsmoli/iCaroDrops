@@ -329,3 +329,9 @@
   height: 50px;
   animation: girar 0.8s linear infinite;
 }
+
+.filtros select,
+.filtros button,
+.filtros input {
+  min-width: 180px;
+}

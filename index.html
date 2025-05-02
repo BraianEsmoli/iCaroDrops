@@ -120,6 +120,23 @@
   <div class="container text-center">
     <h3 class="titulo-seccion mb-4">PRODUCTOS TOP <br> SEMANALES</h3>
 
+    <!-- === FILTROS Y BÚSQUEDA === -->
+    <div class="filtros mb-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <div>
+        <select id="filtroTalle" class="form-select">
+          <option value="">Todos los talles</option>
+          <!-- Opciones se llenan dinámicamente -->
+        </select>
+      </div>
+
+      <div>
+        <button id="ordenPrecio" class="btn btn-outline-light">Ordenar: Precio ↓</button>
+      </div>
+
+      <div class="w-100 w-md-auto">
+        <input type="text" id="barraBusqueda" class="form-control" placeholder="Buscar producto...">
+      </div>
+    </div>
     <div class="row g-4" id="productos-grid">
       <!-- Las tarjetas se inyectarán por JavaScript desde una fuente tipo Notion -->
     </div>

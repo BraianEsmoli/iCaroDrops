@@ -297,3 +297,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
+
+/* === FILTRAR PRODUCTOS === */
+let ordenDescendente = true;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const filtroTalle = document.getElementById('filtroTalle');
+  const ordenPrecio = document.getElementById('ordenPrecio');
+  const barraBusqueda = document.getElementById('barraBusqueda');
+
+  // Llenar select de talles únicos
+  function llenarTallesUnicos() {
+    const tallesSet = new Set();
+    todosLosProductos.forEach(p => {
+      p.talles.split(',').map(t => t.trim()).forEach(t => tallesSet.add(t));
+    });
+    [...tallesSet].sort().forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t;
+      filtroTalle.appendChild(opt);
+    });
+  }
+
+  // Aplicar filtros y renderizar
+  function aplicarFiltros() {
+    let filtrados = [...todosLosProductos];
+
+    const talleSeleccionado = filtroTalle.value;
+    const textoBusqueda = barraBusqueda.value.toLowerCase();
+
+    if (talleSeleccionado) {
+      filtrados = filtrados.filter(p => p.talles.includes(talleSeleccionado));
+    }
+
+    if (textoBusqueda) {
+      filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(textoBusqueda));
+    }
+
+    if (ordenDescendente) {
+      filtrados.sort((a, b) => parseFloat(b.precio.replace('$', '')) - parseFloat(a.precio.replace('$', '')));
+    } else {
+      filtrados.sort((a, b) => parseFloat(a.precio.replace('$', '')) - parseFloat(b.precio.replace('$', '')));
+    }
+
+    grid.innerHTML = '';
+    filtrados.slice(0, productosMostrados).forEach(p => grid.appendChild(crearCard(p)));
+
+    const hayMas = filtrados.length > productosMostrados;
+    document.getElementById('ver-mas')?.classList.toggle('d-none', !hayMas);
+    document.getElementById('ver-menos')?.classList.toggle('d-none', productosMostrados <= 8);
+  }
+
+  filtroTalle.addEventListener('change', aplicarFiltros);
+  barraBusqueda.addEventListener('input', aplicarFiltros);
+
+  ordenPrecio.addEventListener('click', () => {
+    ordenDescendente = !ordenDescendente;
+    ordenPrecio.textContent = ordenDescendente ? 'Ordenar: Precio ↓' : 'Ordenar: Precio ↑';
+    aplicarFiltros();
+  });
+
+  // Cuando los productos están cargados
+  fetch('https://icarodrops-backend.vercel.app/api/productos')
+    .then(res => res.json())
+    .then(productos => {
+      todosLosProductos = productos.map(p => ({
+        ...p,
+        imagenes: Array.isArray(p.imagenes) && p.imagenes.length > 0 ? p.imagenes : ['https://via.placeholder.com/300x200?text=Sin+Imagen']
+      }));
+      llenarTallesUnicos();
+      renderizarProductos();
+    });
+});

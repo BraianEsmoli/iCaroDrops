@@ -297,4 +297,11 @@
     margin-top: auto;
   }
 }
-  
+ 
+/* === filtrar productos === */
+@media (max-width: 768px) {
+  .filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
