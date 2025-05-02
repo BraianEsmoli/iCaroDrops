@@ -392,15 +392,18 @@ body, html {
   text-align: center;
   opacity: 0;
   animation: fadeInUp 1s ease-out forwards;
+  z-index: 5;
 }
 
 .icon-item p {
   font-size: 0.95rem;
+  z-index: 5;
 }
 
 .icon-item small {
   font-size: 0.75rem;
   opacity: 0.8;
+  z-index: 5;
 }
 
 .delay-0 {
