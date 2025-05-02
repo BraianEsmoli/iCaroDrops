@@ -880,10 +880,41 @@ body, html {
   animation: girar 0.8s linear infinite;
 }
 
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 .filtros select,
-.filtros button,
-.filtros input {
+.filtros input,
+.filtros button {
+  background-color: #211f1e;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
   min-width: 180px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filtros select:focus,
+.filtros input:focus,
+.filtros button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00ffcc;
+}
+
+.filtros select:hover,
+.filtros input:hover,
+.filtros button:hover {
+  background-color: #333;
+  color: #00ffcc;
+}
+
+.filtros input::placeholder {
+  color: #bbb;
 }
 
 .footer-logo {
