@@ -325,34 +325,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // Aplicar filtros y renderizar
   function aplicarFiltros() {
     let filtrados = [...todosLosProductos];
-
+  
     const talleSeleccionado = filtroTalle.value;
     const textoBusqueda = barraBusqueda.value.toLowerCase();
-
+  
     if (talleSeleccionado) {
       filtrados = filtrados.filter(p => p.talles.includes(talleSeleccionado));
     }
-
+  
     if (textoBusqueda) {
       filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(textoBusqueda));
     }
-
+  
+    // Primero ordenar por precio
     if (ordenDescendente) {
       filtrados.sort((a, b) => parseFloat(b.precio.replace('$', '')) - parseFloat(a.precio.replace('$', '')));
     } else {
       filtrados.sort((a, b) => parseFloat(a.precio.replace('$', '')) - parseFloat(b.precio.replace('$', '')));
     }
-    
-    // Siempre colocar los agotados al final
+  
+    // Después asegurarse que los agotados queden al final
     filtrados.sort((a, b) => {
       if (a.agotado && !b.agotado) return 1;
       if (!a.agotado && b.agotado) return -1;
       return 0;
     });
-
+  
     grid.innerHTML = '';
     filtrados.slice(0, productosMostrados).forEach(p => grid.appendChild(crearCard(p)));
-
+  
     const hayMas = filtrados.length > productosMostrados;
     document.getElementById('ver-mas')?.classList.toggle('d-none', !hayMas);
     document.getElementById('ver-menos')?.classList.toggle('d-none', productosMostrados <= 8);
