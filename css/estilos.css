@@ -567,7 +567,7 @@ body, html {
 .titulo-seccion {
   margin-top: 80px; /* ajusta según cuánto quieras separar */
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   letter-spacing: 1px;
   font-family: "introRust", sans-serif;
 }
