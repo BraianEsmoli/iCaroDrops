@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* === COMING SOON === */
 // === Three.js COMING SOON mejorado ===
-const container = document.getElementById('animation-container');
+/* const container = document.getElementById('animation-container');
 const width = container.clientWidth;
 const height = container.clientHeight;
 
@@ -103,7 +103,7 @@ window.addEventListener('resize', () => {
   camera.aspect = newWidth / newHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(newWidth, newHeight);
-});
+}); */
 
 
 // === PRODUCTOS ===
