@@ -105,7 +105,6 @@ window.addEventListener('resize', () => {
   renderer.setSize(newWidth, newHeight);
 }); */
 
-
 // === PRODUCTOS ===
 
 // Mostrar spinner de carga
@@ -153,10 +152,33 @@ function crearCard(producto) {
   return card;
 }
 
+// Llenar select de talles únicos
+function llenarTallesUnicos() {
+  const filtroTalle = document.getElementById('filtroTalle');
+  filtroTalle.innerHTML = '<option value="">Todos los talles</option>'; // reinicia
+  const tallesSet = new Set();
+  todosLosProductos.forEach(p => {
+    p.talles.split(',').map(t => t.trim()).forEach(t => tallesSet.add(t));
+  });
+  [...tallesSet].sort().forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t;
+    opt.textContent = t;
+    filtroTalle.appendChild(opt);
+  });
+}
+
 // Mostrar productos
 function renderizarProductos() {
   grid.innerHTML = '';
-  const visibles = todosLosProductos.slice(0, productosMostrados);
+
+  const ordenados = [...todosLosProductos].sort((a, b) => {
+    if (a.agotado && !b.agotado) return 1;
+    if (!a.agotado && b.agotado) return -1;
+    return 0;
+  });
+
+  const visibles = ordenados.slice(0, productosMostrados);
   visibles.forEach(p => grid.appendChild(crearCard(p)));
 
   const hayMasProductos = todosLosProductos.length > productosMostrados;
@@ -168,17 +190,10 @@ function renderizarProductos() {
 fetch('https://icarodrops-backend.vercel.app/api/productos')
   .then(res => res.json())
   .then(productos => {
-    todosLosProductos = productos
-      .map(p => ({
-        ...p,
-        imagenes: Array.isArray(p.imagenes) && p.imagenes.length > 0 ? p.imagenes : ['https://via.placeholder.com/300x200?text=Sin+Imagen']
-      }))
-      .sort((a, b) => {
-        // Si uno está agotado y el otro no, el agotado va abajo
-        if (a.agotado && !b.agotado) return 1;
-        if (!a.agotado && b.agotado) return -1;
-        return 0;
-      });
+    todosLosProductos = productos.map(p => ({
+      ...p,
+      imagenes: Array.isArray(p.imagenes) && p.imagenes.length > 0 ? p.imagenes : ['https://via.placeholder.com/300x200?text=Sin+Imagen']
+    }));
 
     llenarTallesUnicos();
     renderizarProductos();
@@ -210,7 +225,6 @@ function abrirModal(producto) {
       thumbnailsContainer.querySelectorAll('img').forEach(img => img.classList.remove('selected'));
       thumb.classList.add('selected');
 
-      // En mobile: centrar miniatura al hacer clic
       if (window.innerWidth < 769) {
         const thumbRect = thumb.getBoundingClientRect();
         const wrapperRect = thumbnailWrapper.getBoundingClientRect();
@@ -222,7 +236,6 @@ function abrirModal(producto) {
     thumbnailsContainer.appendChild(thumb);
   });
 
-  // → Mobile extra: deslizar tocando a izquierda/derecha
   if (window.innerWidth < 769) {
     let startX = 0;
     let scrollLeft = 0;
@@ -235,7 +248,7 @@ function abrirModal(producto) {
     thumbnailWrapper.addEventListener('touchmove', (e) => {
       e.preventDefault();
       const x = e.touches[0].pageX - thumbnailWrapper.offsetLeft;
-      const walk = (x - startX) * 1.5; // sensibilidad del swipe
+      const walk = (x - startX) * 1.5;
       thumbnailWrapper.scrollLeft = scrollLeft - walk;
     }, { passive: false });
   }
@@ -284,8 +297,7 @@ document.getElementById('ver-menos')?.addEventListener('click', () => {
   renderizarProductos();
 });
 
-
-/* === EFECTO FADEUP, APARECE SOLO CUANDO SE VE EN PANTALLA === */
+/* === EFECTO FADEUP === */
 document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -308,52 +320,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const ordenPrecio = document.getElementById('ordenPrecio');
   const barraBusqueda = document.getElementById('barraBusqueda');
 
-  // Llenar select de talles únicos
-  function llenarTallesUnicos() {
-    const tallesSet = new Set();
-    todosLosProductos.forEach(p => {
-      p.talles.split(',').map(t => t.trim()).forEach(t => tallesSet.add(t));
-    });
-    [...tallesSet].sort().forEach(t => {
-      const opt = document.createElement('option');
-      opt.value = t;
-      opt.textContent = t;
-      filtroTalle.appendChild(opt);
-    });
-  }
-
-  // Aplicar filtros y renderizar
   function aplicarFiltros() {
     let filtrados = [...todosLosProductos];
-  
+
     const talleSeleccionado = filtroTalle.value;
     const textoBusqueda = barraBusqueda.value.toLowerCase();
-  
+
     if (talleSeleccionado) {
       filtrados = filtrados.filter(p => p.talles.includes(talleSeleccionado));
     }
-  
+
     if (textoBusqueda) {
       filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(textoBusqueda));
     }
-  
-    // Primero ordenar por precio
+
     if (ordenDescendente) {
       filtrados.sort((a, b) => parseFloat(b.precio.replace('$', '')) - parseFloat(a.precio.replace('$', '')));
     } else {
       filtrados.sort((a, b) => parseFloat(a.precio.replace('$', '')) - parseFloat(b.precio.replace('$', '')));
     }
-  
-    // Después asegurarse que los agotados queden al final
+
     filtrados.sort((a, b) => {
       if (a.agotado && !b.agotado) return 1;
       if (!a.agotado && b.agotado) return -1;
       return 0;
     });
-  
+
     grid.innerHTML = '';
     filtrados.slice(0, productosMostrados).forEach(p => grid.appendChild(crearCard(p)));
-  
+
     const hayMas = filtrados.length > productosMostrados;
     document.getElementById('ver-mas')?.classList.toggle('d-none', !hayMas);
     document.getElementById('ver-menos')?.classList.toggle('d-none', productosMostrados <= 8);
@@ -367,16 +362,4 @@ document.addEventListener('DOMContentLoaded', () => {
     ordenPrecio.textContent = ordenDescendente ? 'Ordenar: Precio ↓' : 'Ordenar: Precio ↑';
     aplicarFiltros();
   });
-
-  // Cuando los productos están cargados
-  fetch('https://icarodrops-backend.vercel.app/api/productos')
-    .then(res => res.json())
-    .then(productos => {
-      todosLosProductos = productos.map(p => ({
-        ...p,
-        imagenes: Array.isArray(p.imagenes) && p.imagenes.length > 0 ? p.imagenes : ['https://via.placeholder.com/300x200?text=Sin+Imagen']
-      }));
-      llenarTallesUnicos();
-      renderizarProductos();
-    });
 });
