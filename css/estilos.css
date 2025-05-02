@@ -528,7 +528,6 @@ body, html {
   background-color: #211f1e;
   color: #fff;
   position: relative;
-  margin-top: 80px; /* ajusta según cuánto quieras separar */
 }
 
 .productos-destacados::before {
@@ -543,6 +542,7 @@ body, html {
 }
 
 .titulo-seccion {
+  margin-top: 80px; /* ajusta según cuánto quieras separar */
   font-weight: 700;
   font-size: 1.4rem;
   letter-spacing: 1px;
