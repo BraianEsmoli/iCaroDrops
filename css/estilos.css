@@ -402,18 +402,6 @@ body, html {
   animation-delay: 0.4s;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: -40px; /* sigue bajando sobre productos */
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, #000 100%);
-  pointer-events: none;
-  z-index: 2;
-}
-
 /* === HERO ICONS === */
 @keyframes fadeInUp {
   0% {
