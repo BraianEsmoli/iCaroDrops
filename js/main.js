@@ -297,15 +297,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 });
-
-let hasScrolled = false;
-
-window.addEventListener('wheel', (e) => {
-  if (!hasScrolled && e.deltaY > 0) {
-    hasScrolled = true;
-    window.scrollTo({
-      top: window.innerHeight,
-      behavior: 'smooth'
-    });
-  }
-});
